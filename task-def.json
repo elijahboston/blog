@@ -1,0 +1,103 @@
+{
+    "containerDefinitions": [
+        {
+            "command": [
+                "/usr/src/app/bin/wait-for-it.sh",
+                "ghost:2368",
+                "--",
+                "/usr/src/app/bin/startup.sh"
+            ],
+            "essential": true,
+            "mountPoints": [
+                {
+                    "containerPath": "/usr/src/app",
+                    "sourceVolume": "_Client"
+                },
+                {
+                    "containerPath": "/usr/src/app/node_modules",
+                    "sourceVolume": "UsrSrcAppNode_Modules"
+                },
+                {
+                    "containerPath": "/usr/src/app/.next",
+                    "sourceVolume": "UsrSrcApp_Next"
+                }
+            ],
+            "name": "client",
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "hostPort": 3000
+                }
+            ]
+        },
+        {
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "example"
+                }
+            ],
+            "essential": true,
+            "image": "mysql:5.7",
+            "name": "db"
+        },
+        {
+            "environment": [
+                {
+                    "name": "database__client",
+                    "value": "mysql"
+                },
+                {
+                    "name": "database__connection__host",
+                    "value": "db"
+                },
+                {
+                    "name": "database__connection__user",
+                    "value": "root"
+                },
+                {
+                    "name": "database__connection__password",
+                    "value": "example"
+                },
+                {
+                    "name": "database__connection__database",
+                    "value": "ghost"
+                },
+                {
+                    "name": "url",
+                    "value": "http://localhost:8080"
+                }
+            ],
+            "essential": true,
+            "image": "ghost:3-alpine",
+            "name": "ghost",
+            "portMappings": [
+                {
+                    "containerPort": 2368,
+                    "hostPort": 9000
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "./client"
+            },
+            "name": "_Client"
+        },
+        {
+            "host": {
+                "sourcePath": "/usr/src/app/node_modules"
+            },
+            "name": "UsrSrcAppNode_Modules"
+        },
+        {
+            "host": {
+                "sourcePath": "/usr/src/app/.next"
+            },
+            "name": "UsrSrcApp_Next"
+        }
+    ]
+}

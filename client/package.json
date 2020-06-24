@@ -1,0 +1,37 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@types/tryghost__content-api": "^1.3.4",
+    "next": "9.4.2",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "styled-jsx": "^3.3.0"
+  },
+  "devDependencies": {
+    "@tryghost/content-api": "^1.4.1",
+    "@types/node": "^14.0.5",
+    "@types/react": "^16.9.35",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint-config-xo-react": "^0.23.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "typescript": "^3.9.3",
+    "xo": "^0.30.0"
+  },
+  "xo": {
+    "extends": "xo-react",
+    "space": 2,
+    "prettier": true,
+    "semicolon": false
+  },
+  "prettier": {
+    "semi": false
+  }
+}

@@ -1,0 +1,45 @@
+version: "3.1"
+
+services:
+  client:
+    command:
+      [
+        "/usr/src/app/bin/wait-for-it.sh",
+        "ghost:2368",
+        "--",
+        "/usr/src/app/bin/startup.sh",
+      ]
+    depends_on:
+      - ghost
+    ports:
+      - 3000:3000
+    build:
+      context: client
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    env_file:
+      - ./client/.env.production
+
+  ghost:
+    image: ghost:3-alpine
+    restart: always
+    ports:
+      - 9000:2368
+    environment:
+      # see https://docs.ghost.org/docs/config#section-running-ghost-with-config-env-variables
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: example
+      database__connection__database: ghost
+      # this url value is just an example, and is likely wrong for your environment!
+      url: http://localhost:8080
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
