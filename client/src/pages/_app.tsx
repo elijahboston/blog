@@ -6,7 +6,7 @@ import {
   ApolloProvider,
 } from "@apollo/client"
 import { SANITY_API_URL } from "config/api"
-//import { getDataFromTree } from "@apollo/react-ssr"
+import { getDataFromTree } from "@apollo/client/react/ssr"
 
 const App = ({ Component, pageProps, apollo }) => (
   <ApolloProvider client={apollo}>
@@ -16,7 +16,6 @@ const App = ({ Component, pageProps, apollo }) => (
 
 export default withApollo(
   ({ initialState }) => {
-    console.log("SANITY_API_URL", SANITY_API_URL)
     return new ApolloClient({
       connectToDevTools: process.env.NODE_ENV === "production" ? false : true,
       cache: new InMemoryCache().restore(initialState || {}),
@@ -24,8 +23,8 @@ export default withApollo(
         uri: SANITY_API_URL,
       }),
     })
+  },
+  {
+    getDataFromTree,
   }
-  // {
-  //   getDataFromTree,
-  // }
 )(App)
