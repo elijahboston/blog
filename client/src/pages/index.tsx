@@ -1,10 +1,6 @@
-import { getPosts } from "api"
 import { NextPage } from "next"
-import { PostsOrPages } from "@tryghost/content-api"
-import { Layout } from "components/layout"
+import { Layout } from "components/common/layout"
 
-interface HomeProps {}
-
-const Home: NextPage<HomeProps> = () => <Layout>Welcome</Layout>
+const Home: NextPage<{}> = () => <Layout>Welcome</Layout>
 
 export default Home

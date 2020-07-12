@@ -1,0 +1,13 @@
+{
+  // "xo.enable": true,
+  // "xo.format.enable": true,
+  // "eslint.enable": false,
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll": true
+  // },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "samverschueren.linter-xo"
+  // },
+  // "editor.formatOnSave": true,
+  // "editor.defaultFormatter": "samverschueren.linter-xo"
+}

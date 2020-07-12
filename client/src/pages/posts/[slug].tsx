@@ -1,28 +1,18 @@
-import { getPost } from "api"
 import { NextPage } from "next"
-import { PostOrPage } from "@tryghost/content-api"
-import { Layout } from "components/layout"
+import { Layout } from "components/common/layout"
+import { PostView } from "views/post"
+import { PostContainer } from "containers/post"
+import { useRouter } from "next/dist/client/router"
 
 interface PostProps {
-  post: void | PostOrPage
+  slug: string
 }
 
 const Post: NextPage<PostProps> = (props) => {
-  const renderedHtml = (html: string) => ({ __html: html })
+  const router = useRouter()
+  const { slug } = router.query
+  let currentSlug = Array.isArray(slug) ? slug[0] : slug
 
-  return (
-    props.post && (
-      <Layout>
-        <div dangerouslySetInnerHTML={renderedHtml(props.post.html)} />
-      </Layout>
-    )
-  )
+  return <PostContainer slug={currentSlug} />
 }
-
-export async function getServerSideProps({ params }) {
-  const { slug } = params
-  const post = await getPost(slug)
-  return { props: { post } }
-}
-
 export default Post

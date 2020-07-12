@@ -5,28 +5,40 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "codegen": "apollo client:codegen src/types/codegen --endpoint=${NEXT_SANITY_BASE_URL} --target=typescript --outputFlat"
   },
   "dependencies": {
-    "@types/tryghost__content-api": "^1.3.4",
+    "@apollo/client": "^3.0.0-rc.12",
+    "@apollo/react-ssr": "^3.1.5",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.10.4",
     "next": "9.4.2",
+    "next-with-apollo": "^5.1.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "styled-jsx": "^3.3.0"
   },
   "devDependencies": {
-    "@tryghost/content-api": "^1.4.1",
-    "@types/node": "^14.0.5",
-    "@types/react": "^16.9.35",
+    "@types/node": "^14.0.22",
+    "@types/react": "^16.9.42",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
     "babel-plugin-module-resolver": "^4.0.0",
-    "eslint-config-xo-react": "^0.23.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-xo": "^0.32.0",
+    "eslint-config-xo-typescript": "^0.31.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.2",
     "typescript": "^3.9.3",
     "xo": "^0.30.0"
   },
   "xo": {
-    "extends": "xo-react",
+    "extends": [
+      "xo-typescript",
+      "xo-react"
+    ],
     "space": 2,
     "prettier": true,
     "semicolon": false
