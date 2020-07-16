@@ -13,18 +13,13 @@ export const Layout: React.FC<LayoutProps> = (props) => (
     </Head>
     <Header />
     <Navigation />
-
     <main>{props.children}</main>
-
     <footer>Copyright 2020 Alchemy Lab</footer>
-    <style jsx>{`
-      header {
-        font-size: 72px;
-      }
-    `}</style>
     <style jsx global>{`
       body {
         font-family: "Verdana", "sans-serif";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
     `}</style>
   </>

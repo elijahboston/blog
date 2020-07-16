@@ -1,11 +1,11 @@
-const fs = require("fs")
-const path = require("path")
+var fs = require("fs")
+var path = require("path")
 
-const srcPath = "./src"
+var srcPath = "./src"
 
-const aliases = () => {
-  const files = fs.readdirSync(srcPath)
-  files
+function aliases() {
+  var files = fs.readdirSync(srcPath)
+  return files
     .map((file) => path.join(srcPath, file))
     .map((path) => fs.statSync(path).isDirectory())
     .map((dirPath) => () => {
@@ -21,9 +21,7 @@ module.exports = {
       "module-resolver",
       {
         root: [srcPath],
-        alias: {
-          ...aliases(),
-        },
+        alias: aliases(),
       },
     ],
   ],

@@ -7,7 +7,7 @@ export interface SiteConfig {
 }
 
 export const SITE_CONFIG = {
-  title: "Alchemy Lab",
+  title: "Gravity Lab",
   nav: [
     {
       title: "Home",
