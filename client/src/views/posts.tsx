@@ -9,7 +9,7 @@ export interface PostsViewProps {
 export const PostsView: React.FC<PostsViewProps> = ({ posts }) => (
   <Layout>
     <ul>
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <li key={post.slug.current}>
           <Link href={`/posts/${post.slug.current}`}>
             <a>

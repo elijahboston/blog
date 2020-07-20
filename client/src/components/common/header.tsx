@@ -4,7 +4,7 @@ import { Logo } from "components/common/logo"
 export interface HeaderProps {}
 
 export const Header: React.FC<HeaderProps> = () => (
-  <header className="flex justify-center items-center">
+  <header className="flex justify-center items-center mt-6">
     <Logo>{SITE_CONFIG.title}</Logo>
   </header>
 )

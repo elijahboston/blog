@@ -8,6 +8,7 @@ import {
 import { SANITY_API_URL } from "config/api"
 import { getDataFromTree } from "@apollo/client/react/ssr"
 import "styles/tailwind.css"
+import "styles/fonts.css"
 
 const App = ({ Component, pageProps, apollo }) => (
   <ApolloProvider client={apollo}>
