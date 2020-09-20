@@ -1,0 +1,35 @@
+@import "tailwindcss/base";
+h1 {
+  @apply text-5xl;
+  letter-spacing: 0.06rem;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+p {
+  font-size: 1rem;
+  line-height: 2rem;
+  letter-spacing: 0.05rem;
+}
+a {
+  @apply text-blue-600 underline;
+}
+body {
+  font-family: "Roboto", "sans-serif";
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: "100vh";
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+}
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
