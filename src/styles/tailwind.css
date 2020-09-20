@@ -23,13 +23,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: "100vh";
-  background-color: #4158d0;
-  background-image: linear-gradient(
-    43deg,
-    #4158d0 0%,
-    #c850c0 46%,
-    #ffcc70 100%
-  );
+  background: #659999; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f4791f,
+    #659999
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #f4791f,
+    #659999
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
