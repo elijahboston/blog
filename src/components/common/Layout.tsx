@@ -1,5 +1,7 @@
 import Head from "next/head"
 import { SITE_TITLE } from "constants/site"
+import { ProfileHeader } from "./ProfileHeader"
+import { Nav } from "./Nav"
 
 export interface LayoutProps {}
 
@@ -10,8 +12,12 @@ export const Layout: React.FC<LayoutProps> = (props) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <div className="grid grid-cols-12 gap-3">
-      <div className="col-start-2 col-span-10 md:col-span-8 md:col-start-3 lg:col-span-4 lg:col-start-5 bg-white rounded-lg">
-        <main>{props.children}</main>
+      <div className="col-start-2 col-span-10 md:col-span-8 md:col-start-3 lg:col-span-6 lg:col-start-4">
+        <main>
+          <ProfileHeader />
+          <Nav />
+          {props.children}
+        </main>
       </div>
     </div>
   </div>
