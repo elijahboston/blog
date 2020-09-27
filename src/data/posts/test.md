@@ -1,5 +1,6 @@
 ---
 title: "Title of post"
+slug: "test-post"
 ---
 
 # Test Post

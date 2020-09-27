@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { Canvas, render, useFrame } from "react-three-fiber"
+import { Canvas, useFrame } from "react-three-fiber"
 import { Mesh } from "three"
 
 const Box: React.FC<{ position: [number, number, number] }> = (props) => {
@@ -29,7 +29,6 @@ const Box: React.FC<{ position: [number, number, number] }> = (props) => {
   )
 }
 export const Cube: React.FC<{}> = () => {
-  useFrame(() => {})
   return (
     <Canvas colorManagement>
       <ambientLight intensity={0.2} />
