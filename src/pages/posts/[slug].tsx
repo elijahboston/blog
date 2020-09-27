@@ -1,14 +1,17 @@
 import { NextPage } from "next"
-import { Layout } from "components/common/Layout"
+import { LayoutHomepage } from "components/layouts/LayoutHomepage"
 import { useRouter } from "next/dist/client/router"
 import matter from "gray-matter"
 import ReactMarkdown from "react-markdown"
 import glob from "glob"
+import React from "react"
+import { LayoutPost } from "components/layouts/LayoutPost"
 
-interface PostProps {
+export interface PostProps {
   slug: string
   frontmatter: {
     title: string
+    slug: string
     author: string
     datePosted: string
     dateUpdated?: string
@@ -23,7 +26,7 @@ const Post: NextPage<PostProps> = (props) => {
   let currentSlug = Array.isArray(slug) ? slug[0] : slug
 
   return (
-    <Layout>
+    <LayoutPost>
       <article>
         <h1 className="text-6xl font-display">{frontmatter.title}</h1>
 
@@ -31,7 +34,7 @@ const Post: NextPage<PostProps> = (props) => {
 
         {frontmatter.author && <div className="">{frontmatter.author}</div>}
       </article>
-    </Layout>
+    </LayoutPost>
   )
 }
 
@@ -52,15 +55,18 @@ export async function getStaticProps({ ...ctx }) {
 
 export async function getStaticPaths() {
   //get all .md files in the posts dir
-  const blogs = glob.sync("data/posts/**/*.md")
+  const blogSlugs = ((context) => {
+    const keys = context.keys()
+    const data = keys.map((key, index) => {
+      let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3)
 
-  //remove path and extension to leave filename only
-  const blogSlugs = blogs.map((file) =>
-    file.split("/")[1].replace(/ /g, "-").slice(0, -3).trim()
-  )
+      return slug
+    })
+    return data
+  })(require.context("../../data/posts", true, /\.md$/))
 
   // create paths with `slug` param
-  const paths = blogSlugs.map((slug) => `/blog/${slug}`)
+  const paths = blogSlugs.map((slug) => `/post/${slug}`)
 
   return {
     paths,

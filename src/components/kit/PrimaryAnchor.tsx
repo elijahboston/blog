@@ -21,7 +21,7 @@ export const PrimaryAnchor: React.FC<PrimaryAnchorProps> = (props) => (
       "items-center",
       "justify-left",
       "no-underline",
-      "hover:underline",
+      "text-gray-600 border-gray-600 hover:text-white hover:border-white",
       props.className,
     ])}
   >
