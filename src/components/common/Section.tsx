@@ -1,6 +1,6 @@
-import { ClassName } from "@types/shared"
+import { BaseComponentProps } from "types/shared"
 
-export interface SectionProps extends ClassName {
+export interface SectionProps extends BaseComponentProps {
   title: string
   backgroundColor: string
 }
