@@ -11,7 +11,7 @@ class DocumentOverride extends Document {
             rel="stylesheet"
           ></link>
         </Head>
-        <body>
+        <body className="bg-body">
           <Main />
           <NextScript />
         </body>

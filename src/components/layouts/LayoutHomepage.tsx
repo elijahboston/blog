@@ -5,10 +5,14 @@ import React from "react"
 
 export const LayoutHomepage: React.FC<LayoutProps> = (props) => (
   <LayoutBase>
-    <ProfileHeader />
-    <div className="flex justify-center py-8">
-      <Nav />
+    <div className="col-span-12">
+      <ProfileHeader />
     </div>
-    {props.children}
+    {/* <div className="col-span-12 pt-4">
+      <Nav />
+    </div> */}
+    <div className="col-start-2 col-span-10 lg:col-span-6 lg:col-start-4">
+      {props.children}
+    </div>
   </LayoutBase>
 )

@@ -1,20 +1,34 @@
 import dynamic from "next/dynamic"
+import Link from "next/link"
 import React from "react"
 import { Nav } from "./Nav"
 
 const CubeDynamic = dynamic<{}>(() => import("./Cube").then((mod) => mod.Cube))
 
+const titleStyle = [
+  "font-display",
+  "text-2xl",
+  "md-text-xl",
+  "text-white",
+  "font-thin",
+  "pl-2",
+  "hover:text-blue-400",
+  "cursor-pointer",
+]
+
 export const PageHeader: React.FC<{}> = () => (
-  <header className="flex items-center">
-    {/* <img
-      src="/self.jpeg"
-      className="rounded-full w-1/2 h-1/2 md:w-1/6 md:h-1/6 pt-4 pb-4"
-    /> */}
-    <div className="">
+  <header className="flex items-center m-4">
+    <div className="flex md:justify-center md:items-center w-8 h-8">
       <CubeDynamic />
     </div>
-    <h1 className="text-2xl md-text-xl text-white">Elijah Boston</h1>
-    <div className="flex flex-grow justify-end">
+
+    <Link href="/">
+      <h1 className={clsx("hidden md:block", titleStyle)}>Elijah Boston</h1>
+    </Link>
+    <Link href="/">
+      <h1 className={clsx("md:hidden", titleStyle)}>EB</h1>
+    </Link>
+    <div className="flex flex-col flex-grow items-end">
       <Nav />
     </div>
   </header>

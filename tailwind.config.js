@@ -11,8 +11,8 @@ module.exports = {
     //   xl: "1280px",
     // },
     fontFamily: {
-      display: ["Oxanium", "sans-serif"],
-      body: ["Source Serif Pro", "sans-serif"],
+      display: ["Source Sans Pro", "sans-serif"],
+      body: ["Source Serif Pro", "serif"],
     },
     borderWidth: {
       default: "1px",
@@ -22,13 +22,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        "deep-purple": "#8A2387",
-        pinkish: "#E94057",
-        "off-white": "#F2F2F2",
-        "dark-brown": "#242614",
-        "section-1": "#C2C5B7",
-        "section-2": "#647E90",
-        "section-3": "#A8BAB3",
+        body: "#3a475a",
       },
       // spacing: {
       //   "96": "24rem",

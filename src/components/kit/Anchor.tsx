@@ -13,7 +13,13 @@ const AnchorBase = React.forwardRef<
   AnchorProps & React.HTMLAttributes<HTMLAnchorElement>
 >((props, ref) => (
   <a
-    className={clsx(["font-sans", "font-bold", props.className])}
+    className={clsx([
+      "font-sans",
+      "font-bold",
+      "no-underline",
+      "border-b-2",
+      props.className,
+    ])}
     {...props}
     ref={ref}
   >

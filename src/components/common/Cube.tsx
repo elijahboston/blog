@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useMemo, useRef, useState } from "react"
 import { Canvas, useFrame } from "react-three-fiber"
 import { Mesh } from "three"
 
@@ -29,12 +29,16 @@ const Box: React.FC<{ position: [number, number, number] }> = (props) => {
   )
 }
 export const Cube: React.FC<{}> = () => {
-  return (
-    <Canvas colorManagement>
-      <ambientLight intensity={0.2} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <Box position={[0, 0, 0]} />
-    </Canvas>
+  const rotatingCube = useMemo(
+    () => (
+      <Canvas colorManagement>
+        <ambientLight intensity={0.2} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+        <pointLight position={[-10, -10, -10]} />
+        <Box position={[0, 0, 0]} />
+      </Canvas>
+    ),
+    []
   )
+  return rotatingCube
 }

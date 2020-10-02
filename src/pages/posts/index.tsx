@@ -15,8 +15,8 @@ const Post: NextPage<PostIndexProps> = (props) => {
       <h1>Posts</h1>
       <ul>
         {props.allPosts.map((item) => (
-          <li key={item.frontmatter.slug}>
-            <Anchor href={`posts/${item.frontmatter.slug}`}>
+          <li key={item.slug}>
+            <Anchor href={`posts/${item.slug}`}>
               {item.frontmatter.title}
             </Anchor>
           </li>

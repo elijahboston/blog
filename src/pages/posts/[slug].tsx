@@ -59,6 +59,7 @@ export async function getStaticPaths() {
     const keys = context.keys()
     const data = keys.map((key, index) => {
       let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3)
+      console.log("SLUG:", slug)
 
       return slug
     })
@@ -66,7 +67,7 @@ export async function getStaticPaths() {
   })(require.context("../../data/posts", true, /\.md$/))
 
   // create paths with `slug` param
-  const paths = blogSlugs.map((slug) => `/post/${slug}`)
+  const paths = blogSlugs.map((slug) => `/posts/${slug}`)
 
   return {
     paths,

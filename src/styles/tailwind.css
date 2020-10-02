@@ -9,26 +9,37 @@ h2 {
 h3 {
   @apply text-lg;
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-display;
+  @apply font-bold;
+}
 p {
-  font-size: 1rem;
-  line-height: 1.5rem;
+  @apply font-body;
+  padding: 16px 0;
+  line-height: 1.3rem;
   letter-spacing: 0.05rem;
 }
 a {
-  @apply text-white;
+  @apply text-blue-400;
   @apply underline;
+}
+a:hover {
+  @apply text-blue-600;
 }
 html {
   @apply text-2xl;
 }
 body {
-  font-family: "Roboto", "sans-serif";
+  font-family: "Source Sans Pro", "sans-serif";
   height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: "100vh";
   color: #fff;
-  background: #3a475a;
   /* background: #659999; */
   /* background: -webkit-linear-gradient(
     to right,
