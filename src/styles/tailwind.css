@@ -2,12 +2,19 @@
 h1 {
   @apply text-5xl;
   letter-spacing: 0.06rem;
+  line-height: 3.5rem;
 }
 h2 {
-  @apply text-xl;
+  @apply text-4xl;
 }
 h3 {
-  @apply text-lg;
+  @apply text-3xl;
+}
+h4 {
+  @apply text-2xl;
+}
+h5 {
+  @apply text-xl;
 }
 h1,
 h2,

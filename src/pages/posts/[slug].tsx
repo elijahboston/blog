@@ -28,7 +28,9 @@ const Post: NextPage<PostProps> = (props) => {
   return (
     <LayoutPost>
       <article>
-        <h1 className="text-6xl font-display">{frontmatter.title}</h1>
+        <h1 className="text-5xl lg:text-6xl font-display">
+          {frontmatter.title}
+        </h1>
 
         <ReactMarkdown source={props.markdownBody} />
 
@@ -59,7 +61,6 @@ export async function getStaticPaths() {
     const keys = context.keys()
     const data = keys.map((key, index) => {
       let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3)
-      console.log("SLUG:", slug)
 
       return slug
     })

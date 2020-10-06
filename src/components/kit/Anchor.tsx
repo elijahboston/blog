@@ -46,12 +46,12 @@ export const Anchor: React.FC<
         (url && url.hostname && url.hostname in PREFETCH_DOMAINS) || false
       }
     >
-      <a
+      <AnchorBase
         className={clsx(["font-sans", "font-bold", props.className])}
         {...props}
       >
         {props.children}
-      </a>
+      </AnchorBase>
     </Link>
   )
 }

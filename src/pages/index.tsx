@@ -5,20 +5,35 @@ import SvgGithub from "components/icons/Github"
 import SvgLinkedin from "components/icons/Linkedin"
 import React from "react"
 import { PrimaryAnchor, PrimaryAnchorProps } from "components/kit/PrimaryAnchor"
-import { contactInfo } from "data/contact"
-import { recentWork } from "data/recent-work"
-import { Anchor } from "components/kit/Anchor"
+import { siteData } from "data/site"
+import { PostProps } from "./posts/[slug]"
+import { getPosts } from "util/get-posts"
+import Link from "next/link"
 
 const ContactLink: React.FC<PrimaryAnchorProps> = (props) => (
-  <PrimaryAnchor className="border-gray-600 my-2 md:m-2" {...props} />
+  <PrimaryAnchor className="border-gray-600 m-2" {...props} />
 )
 
-const Home: NextPage<{}> = () => (
+const Home: NextPage<{ posts: PostProps[] }> = ({ posts }) => (
   <LayoutHomepage>
-    <Section title="About" backgroundColor="section-1" className="pt-0">
-      <p>I build sites using modern web technologies.</p>
-    </Section>
-    <Section title="Recent Work" backgroundColor="section-2">
+    <p className="text-center py-6">
+      I build websites and applications using React and Typescript.
+    </p>
+
+    {/* {posts && (
+      <Section title="Recent Posts">
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <Link prefetch href={"posts/" + post.slug}>
+                {post.frontmatter.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
+    )} */}
+    {/* <Section title="Recent Work" backgroundColor="section-2">
       <ul className="list-disc list-inside">
         {recentWork.map((item) => (
           <li>
@@ -26,32 +41,34 @@ const Home: NextPage<{}> = () => (
           </li>
         ))}
       </ul>
-    </Section>
-    <Section title="Contact" backgroundColor="section-3">
-      <ContactLink
-        icon={<SvgGithub className="w-10 h-10 fill-current" />}
-        href={contactInfo.github}
-      >
-        GitHub
-      </ContactLink>
-      <ContactLink
-        icon={<SvgLinkedin className="w-10 h-10 fill-current" />}
-        href={contactInfo.linkedIn}
-      >
-        LinkedIn
-      </ContactLink>
+    </Section> */}
+    <Section title="Contact">
+      <div className="flex flex-wrap justify-center lg:justify-start">
+        <ContactLink
+          icon={<SvgGithub className="w-10 h-10 fill-current" />}
+          href={siteData.contactInfo.github}
+        >
+          GitHub
+        </ContactLink>
+        <ContactLink
+          icon={<SvgLinkedin className="w-10 h-10 fill-current" />}
+          href={siteData.contactInfo.linkedIn}
+        >
+          LinkedIn
+        </ContactLink>
+      </div>
     </Section>
   </LayoutHomepage>
 )
 
 export default Home
 
-// export async function getStaticProps() {
-//   const config = await import(`../data/config.json`)
+export async function getStaticProps() {
+  const posts = getPosts()
 
-//   return {
-//     props: {
-//       recentWork: config.default,
-//     },
-//   }
-// }
+  return {
+    props: {
+      posts,
+    },
+  }
+}

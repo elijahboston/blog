@@ -10,7 +10,7 @@ export const LayoutPost: React.FC<LayoutProps> = (props) => (
         <PageHeader />
       </div>
     </div>
-    <div className="col-start-2 col-span-10 lg:col-span-6 lg:col-start-3 pt-20 md:pt-32">
+    <div className="col-start-2 col-span-10 lg:col-span-8 lg:col-start-3 pt-20 md:pt-32">
       {props.children}
     </div>
   </LayoutBase>
