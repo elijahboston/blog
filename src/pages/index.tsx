@@ -6,7 +6,6 @@ import SvgLinkedin from "components/icons/Linkedin"
 import React from "react"
 import { PrimaryAnchor, PrimaryAnchorProps } from "components/kit/PrimaryAnchor"
 import { SITE_DATA } from "data/site"
-import { PostProps } from "./posts/[slug]"
 import { getPosts } from "util/get-posts"
 import Link from "next/link"
 
@@ -14,7 +13,7 @@ const ContactLink: React.FC<PrimaryAnchorProps> = (props) => (
   <PrimaryAnchor className="border-gray-600 m-2" {...props} />
 )
 
-const Home: NextPage<{ posts: PostProps[] }> = ({ posts }) => (
+const Home: NextPage<{}> = () => (
   <LayoutHomepage>
     <Section title="About Me">
       <p className="text-center lg:text-left">{SITE_DATA.aboutMe}</p>

@@ -1,75 +1,52 @@
-import { NextPage } from "next"
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next"
 import { LayoutHomepage } from "components/layouts/LayoutHomepage"
 import { useRouter } from "next/dist/client/router"
 import matter from "gray-matter"
-import ReactMarkdown from "react-markdown"
-import glob from "glob"
 import React from "react"
 import { LayoutPost } from "components/layouts/LayoutPost"
+import { gql, useQuery } from "@apollo/client"
+import { GetPost } from "types/codegen/GetPost"
+import { Post } from "components/Post"
+import { initializeApollo } from "lib/apollo-client"
+import { usePostQuery } from "hooks/use-post"
+import { getQueryParam } from "util/get-query-param"
+import { GET_POST } from "queries/get-post"
 
-export interface PostProps {
-  slug: string
-  frontmatter: {
-    title: string
-    slug: string
-    author: string
-    datePosted: string
-    dateUpdated?: string
-  }
-  markdownBody: string
-}
+const PostPage: NextPage<{}> = () => {
+  const { query } = useRouter()
+  const { slug } = query
 
-const Post: NextPage<PostProps> = (props) => {
-  const router = useRouter()
-  const { frontmatter } = props
+  const { data } = usePostQuery({ slug: getQueryParam(slug) })
 
   return (
     <LayoutPost>
-      <article>
-        <h1 className="text-4xl lg:text-6xl font-display">
-          {frontmatter.title}
-        </h1>
-
-        <ReactMarkdown source={props.markdownBody} />
-
-        {frontmatter.author && <div className="">{frontmatter.author}</div>}
-      </article>
+      <Post post={data} />
     </LayoutPost>
   )
 }
 
-export default Post
+export default PostPage
 
-export async function getStaticProps({ ...ctx }) {
-  const { slug } = ctx.params
-  const content = await import(`../../data/posts/${slug}.md`)
-  const data = matter(content.default)
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const apolloClient = initializeApollo()
+  const { slug } = ctx.query
+
+  const { data, error } = await apolloClient.query({
+    query: GET_POST,
+    variables: {
+      slug: getQueryParam(slug),
+    },
+  })
+
+  if (!data || error) {
+    ctx.res.statusCode = 404
+    ctx.res.end()
+  }
 
   return {
     props: {
-      frontmatter: data.data,
-      markdownBody: data.content,
+      initialApolloState: apolloClient.cache.extract(),
     },
-  }
-}
-
-export async function getStaticPaths() {
-  //get all .md files in the posts dir
-  const blogSlugs = ((context) => {
-    const keys = context.keys()
-    const data = keys.map((key, index) => {
-      let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3)
-
-      return slug
-    })
-    return data
-  })(require.context("../../data/posts", true, /\.md$/))
-
-  // create paths with `slug` param
-  const paths = blogSlugs.map((slug) => `/posts/${slug}`)
-
-  return {
-    paths,
-    fallback: false,
+    //revalidate: 1,
   }
 }
