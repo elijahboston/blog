@@ -21,14 +21,12 @@ export interface PostProps {
 
 const Post: NextPage<PostProps> = (props) => {
   const router = useRouter()
-  const { slug } = router.query
   const { frontmatter } = props
-  let currentSlug = Array.isArray(slug) ? slug[0] : slug
 
   return (
     <LayoutPost>
       <article>
-        <h1 className="text-5xl lg:text-6xl font-display">
+        <h1 className="text-4xl lg:text-6xl font-display">
           {frontmatter.title}
         </h1>
 

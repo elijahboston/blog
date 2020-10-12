@@ -1,7 +1,7 @@
-export const siteData = {
+export const SITE_DATA = {
   siteTitle: "Elijah Boston",
   tagline: "Full Stack Developer",
-  aboutMe: "I build sites and applications using modern web technologies",
+  aboutMe: "I like building cool stuff with React, TypeScript, and GraphQL.",
   contactInfo: {
     github: "http://www.github.com/elijahboston",
     linkedIn: "http://www.linkedin.com/elijahboston",

@@ -5,7 +5,7 @@ import SvgGithub from "components/icons/Github"
 import SvgLinkedin from "components/icons/Linkedin"
 import React from "react"
 import { PrimaryAnchor, PrimaryAnchorProps } from "components/kit/PrimaryAnchor"
-import { siteData } from "data/site"
+import { SITE_DATA } from "data/site"
 import { PostProps } from "./posts/[slug]"
 import { getPosts } from "util/get-posts"
 import Link from "next/link"
@@ -16,12 +16,11 @@ const ContactLink: React.FC<PrimaryAnchorProps> = (props) => (
 
 const Home: NextPage<{ posts: PostProps[] }> = ({ posts }) => (
   <LayoutHomepage>
-    <p className="text-center py-6">
-      I build websites and applications using React and Typescript.
-    </p>
-
+    <Section title="About Me">
+      <p className="text-center lg:text-left">{SITE_DATA.aboutMe}</p>
+    </Section>
     {/* {posts && (
-      <Section title="Recent Posts">
+      <Section title="Posts">
         <ul>
           {posts.map((post) => (
             <li>
@@ -46,13 +45,13 @@ const Home: NextPage<{ posts: PostProps[] }> = ({ posts }) => (
       <div className="flex flex-wrap justify-center lg:justify-start">
         <ContactLink
           icon={<SvgGithub className="w-10 h-10 fill-current" />}
-          href={siteData.contactInfo.github}
+          href={SITE_DATA.contactInfo.github}
         >
           GitHub
         </ContactLink>
         <ContactLink
           icon={<SvgLinkedin className="w-10 h-10 fill-current" />}
-          href={siteData.contactInfo.linkedIn}
+          href={SITE_DATA.contactInfo.linkedIn}
         >
           LinkedIn
         </ContactLink>
@@ -68,7 +67,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts,
+      posts: posts.filter((post) => !!post.frontmatter.published),
     },
   }
 }
