@@ -1,5 +1,6 @@
 ---
 title: "Performance tuning for React"
+published: false
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lobortis dui quis venenatis consequat. Aenean varius nulla velit, vitae imperdiet urna hendrerit id. Curabitur hendrerit hendrerit maximus. Nulla vitae mattis turpis, eget eleifend augue. Suspendisse a ante porttitor, ultrices ante et, scelerisque metus. Maecenas libero magna, pharetra eget mollis non, malesuada in mi. Donec id tortor nec nisl varius malesuada at a libero. In ornare quam at libero imperdiet venenatis. Pellentesque id est tristique, fringilla massa sed, suscipit mi.
