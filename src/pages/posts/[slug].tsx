@@ -1,75 +1,101 @@
-import { NextPage } from "next"
-import { LayoutHomepage } from "components/layouts/LayoutHomepage"
+import { GetServerSidePropsContext, NextPage } from "next"
 import { useRouter } from "next/dist/client/router"
-import matter from "gray-matter"
-import ReactMarkdown from "react-markdown"
-import glob from "glob"
 import React from "react"
 import { LayoutPost } from "components/layouts/LayoutPost"
+import { initializeApollo } from "lib/apollo-client"
+import { usePostQuery } from "hooks/use-post"
+import { getQueryParam } from "util/get-query-param"
+import { GET_POST } from "queries/get-post"
+import BlockContent from "@sanity/block-content-to-react"
+import { SANITY_PROJECT_ID, SANITY_DATASET } from "constants/api"
 
-export interface PostProps {
-  slug: string
-  frontmatter: {
-    title: string
-    slug: string
-    author: string
-    datePosted: string
-    dateUpdated?: string
+import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter"
+import js from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript"
+import docco from "react-syntax-highlighter/dist/cjs/styles/hljs/docco"
+
+SyntaxHighlighter.registerLanguage("javascript", js)
+
+const PostPage: NextPage<{}> = () => {
+  const { query } = useRouter()
+  const { slug } = query
+
+  const { data } = usePostQuery({ slug: getQueryParam(slug) })
+  const post = data.allPost[0]
+
+  const serializers = {
+    types: {
+      block: (props) => {
+        switch (props.node.style) {
+          case "normal":
+            return <p className="font-body text-base my-4">{props.children}</p>
+          default:
+            return BlockContent.defaultSerializers.types.block(props)
+        }
+      },
+      codeSnippet: (props) => {
+        return (
+          <SyntaxHighlighter
+            language="javascript"
+            style={docco}
+            customStyle={{
+              padding: "1rem",
+            }}
+            codeTagProps={{
+              className: "text-sm",
+            }}
+          >
+            {props.node.snippet.code}
+          </SyntaxHighlighter>
+        )
+      },
+    },
+    list: (props) => {
+      return (
+        <ul className="list-disc list-inside m-4 font-body">
+          {props.children}
+        </ul>
+      )
+    },
+    listItem: (props) => {
+      return BlockContent.defaultSerializers.listItem(props)
+    },
   }
-  markdownBody: string
-}
-
-const Post: NextPage<PostProps> = (props) => {
-  const router = useRouter()
-  const { frontmatter } = props
-
   return (
     <LayoutPost>
-      <article>
-        <h1 className="text-4xl lg:text-6xl font-display">
-          {frontmatter.title}
-        </h1>
-
-        <ReactMarkdown source={props.markdownBody} />
-
-        {frontmatter.author && <div className="">{frontmatter.author}</div>}
-      </article>
+      <h1 className="font-display">{post.title}</h1>
+      {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
+      <BlockContent
+        blocks={post.bodyRaw}
+        projectId={SANITY_PROJECT_ID}
+        dataset={SANITY_DATASET}
+        serializers={serializers}
+      />
     </LayoutPost>
   )
 }
 
-export default Post
+export default PostPage
 
-export async function getStaticProps({ ...ctx }) {
-  const { slug } = ctx.params
-  const content = await import(`../../data/posts/${slug}.md`)
-  const data = matter(content.default)
+export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+  const apolloClient = initializeApollo()
+  const { slug } = ctx.query
+
+  const { data, error } = await apolloClient.query({
+    query: GET_POST,
+    variables: {
+      slug: getQueryParam(slug),
+    },
+  })
+
+  if (!data || error) {
+    ctx.res.statusCode = 404
+    ctx.res.end()
+  }
 
   return {
     props: {
-      frontmatter: data.data,
-      markdownBody: data.content,
+      initialApolloState: apolloClient.cache.extract(),
     },
-  }
-}
-
-export async function getStaticPaths() {
-  //get all .md files in the posts dir
-  const blogSlugs = ((context) => {
-    const keys = context.keys()
-    const data = keys.map((key, index) => {
-      let slug = key.replace(/^.*[\\\/]/, "").slice(0, -3)
-
-      return slug
-    })
-    return data
-  })(require.context("../../data/posts", true, /\.md$/))
-
-  // create paths with `slug` param
-  const paths = blogSlugs.map((slug) => `/posts/${slug}`)
-
-  return {
-    paths,
-    fallback: false,
+    //revalidate: 1,
   }
 }
