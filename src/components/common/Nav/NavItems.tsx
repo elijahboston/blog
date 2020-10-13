@@ -7,8 +7,6 @@ export const NavItems: React.FC<{}> = () => {
   const { pathname } = useRouter()
   const [, root] = pathname.split("/")
 
-  console.log("root:", root)
-
   return (
     <>
       {NAV_DATA.map((navItem) => (

@@ -1,26 +1,75 @@
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next"
-import { LayoutHomepage } from "components/layouts/LayoutHomepage"
+import { GetServerSidePropsContext, NextPage } from "next"
 import { useRouter } from "next/dist/client/router"
-import matter from "gray-matter"
 import React from "react"
 import { LayoutPost } from "components/layouts/LayoutPost"
-import { gql, useQuery } from "@apollo/client"
-import { GetPost } from "types/codegen/GetPost"
-import { Post } from "components/Post"
 import { initializeApollo } from "lib/apollo-client"
 import { usePostQuery } from "hooks/use-post"
 import { getQueryParam } from "util/get-query-param"
 import { GET_POST } from "queries/get-post"
+import BlockContent from "@sanity/block-content-to-react"
+import { SANITY_PROJECT_ID, SANITY_DATASET } from "constants/api"
+
+import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter"
+import js from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript"
+import docco from "react-syntax-highlighter/dist/cjs/styles/hljs/docco"
+
+SyntaxHighlighter.registerLanguage("javascript", js)
 
 const PostPage: NextPage<{}> = () => {
   const { query } = useRouter()
   const { slug } = query
 
   const { data } = usePostQuery({ slug: getQueryParam(slug) })
+  const post = data.allPost[0]
 
+  const serializers = {
+    types: {
+      block: (props) => {
+        switch (props.node.style) {
+          case "normal":
+            return <p className="font-body text-base my-4">{props.children}</p>
+          default:
+            return BlockContent.defaultSerializers.types.block(props)
+        }
+      },
+      codeSnippet: (props) => {
+        return (
+          <SyntaxHighlighter
+            language="javascript"
+            style={docco}
+            customStyle={{
+              padding: "1rem",
+            }}
+            codeTagProps={{
+              className: "text-sm",
+            }}
+          >
+            {props.node.snippet.code}
+          </SyntaxHighlighter>
+        )
+      },
+    },
+    list: (props) => {
+      return (
+        <ul className="list-disc list-inside m-4 font-body">
+          {props.children}
+        </ul>
+      )
+    },
+    listItem: (props) => {
+      return BlockContent.defaultSerializers.listItem(props)
+    },
+  }
   return (
     <LayoutPost>
-      <Post post={data} />
+      <h1 className="font-display">{post.title}</h1>
+      {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
+      <BlockContent
+        blocks={post.bodyRaw}
+        projectId={SANITY_PROJECT_ID}
+        dataset={SANITY_DATASET}
+        serializers={serializers}
+      />
     </LayoutPost>
   )
 }
