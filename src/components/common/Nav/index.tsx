@@ -8,7 +8,11 @@ export const Nav: React.FC<{ compact?: boolean }> = ({ compact }) => {
   const [open, setOpen] = useState<boolean>(false)
 
   return (
-    <nav className="flex flex-col items-end lg:items-center">
+    <nav
+      className={clsx("flex flex-col items-end lg:items-center", {
+        "pt-6": !compact,
+      })}
+    >
       {compact && (
         <button
           className="text-white w-8 h-8 flex justify-center items-center lg:hidden"

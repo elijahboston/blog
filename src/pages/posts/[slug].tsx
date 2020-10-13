@@ -22,44 +22,6 @@ const PostPage: NextPage<{}> = () => {
   const { data } = usePostQuery({ slug: getQueryParam(slug) })
   const post = data.allPost[0]
 
-  const serializers = {
-    types: {
-      block: (props) => {
-        switch (props.node.style) {
-          case "normal":
-            return <p className="font-body text-base my-4">{props.children}</p>
-          default:
-            return BlockContent.defaultSerializers.types.block(props)
-        }
-      },
-      codeSnippet: (props) => {
-        return (
-          <SyntaxHighlighter
-            language="javascript"
-            style={docco}
-            customStyle={{
-              padding: "1rem",
-            }}
-            codeTagProps={{
-              className: "text-sm",
-            }}
-          >
-            {props.node.snippet.code}
-          </SyntaxHighlighter>
-        )
-      },
-    },
-    list: (props) => {
-      return (
-        <ul className="list-disc list-inside m-4 font-body">
-          {props.children}
-        </ul>
-      )
-    },
-    listItem: (props) => {
-      return BlockContent.defaultSerializers.listItem(props)
-    },
-  }
   return (
     <LayoutPost>
       <h1 className="font-display">{post.title}</h1>
