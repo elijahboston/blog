@@ -1,24 +1,22 @@
 import { NextPage } from "next"
-import matter from "gray-matter"
 import React from "react"
-import { PostProps } from "./[slug]"
 import { LayoutPost } from "components/layouts/LayoutPost"
 import { Anchor } from "components/kit/Anchor"
-import { getPosts } from "util/get-posts"
+import { initializeApollo } from "lib/apollo-client"
+import { usePostsQuery } from "hooks/use-posts"
+import { POST_PATH } from "constants/site"
+import { GET_POSTS } from "queries/get-posts"
 
-interface PostIndexProps {
-  allPosts: PostProps[]
-}
-
-const Post: NextPage<PostIndexProps> = (props) => {
+const Post: NextPage<{}> = () => {
+  const { data } = usePostsQuery()
   return (
     <LayoutPost>
       <h1>Posts</h1>
       <ul>
-        {props.allPosts.map((item) => (
-          <li key={item.slug}>
-            <Anchor href={`posts/${item.slug}`}>
-              {item.frontmatter.title}
+        {data.allPost.map((item) => (
+          <li key={item.slug.current}>
+            <Anchor href={`${POST_PATH}/${item.slug.current}`}>
+              {item.title}
             </Anchor>
           </li>
         ))}
@@ -30,9 +28,16 @@ const Post: NextPage<PostIndexProps> = (props) => {
 export default Post
 
 export async function getStaticProps() {
+  const apolloClient = initializeApollo()
+
+  await apolloClient.query({
+    query: GET_POSTS,
+  })
+
   return {
     props: {
-      allPosts: getPosts(),
+      initialApolloState: apolloClient.cache.extract(),
     },
+    //revalidate: 1,
   }
 }

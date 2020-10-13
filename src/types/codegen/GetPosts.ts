@@ -19,11 +19,14 @@ export interface GetPosts_allPost_author {
 
 export interface GetPosts_allPost {
   __typename: "Post";
+  /**
+   * Document ID
+   */
+  _id: string | null;
   title: string | null;
   slug: GetPosts_allPost_slug | null;
   publishedAt: any | null;
   author: GetPosts_allPost_author | null;
-  bodyRaw: any | null;
 }
 
 export interface GetPosts {
