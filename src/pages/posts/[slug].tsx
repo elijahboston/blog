@@ -68,7 +68,51 @@ const PostPage: NextPage<{}> = () => {
         blocks={post.bodyRaw}
         projectId={SANITY_PROJECT_ID}
         dataset={SANITY_DATASET}
-        serializers={serializers}
+        serializers={{
+          marks: {
+            code: (props) => (
+              <code className="bg-white text-black p-1">{props.children}</code>
+            ),
+          },
+          types: {
+            block: (props) => {
+              switch (props.node.style) {
+                case "normal":
+                  return (
+                    <p className="font-body text-base my-4">{props.children}</p>
+                  )
+                default:
+                  return BlockContent.defaultSerializers.types.block(props)
+              }
+            },
+            codeSnippet: (props) => {
+              return (
+                <SyntaxHighlighter
+                  language="javascript"
+                  style={docco}
+                  customStyle={{
+                    padding: "1rem",
+                  }}
+                  codeTagProps={{
+                    className: "text-sm",
+                  }}
+                >
+                  {props.node.snippet.code}
+                </SyntaxHighlighter>
+              )
+            },
+          },
+          list: (props) => {
+            return (
+              <ul className="list-disc list-inside m-4 font-body">
+                {props.children}
+              </ul>
+            )
+          },
+          listItem: (props) => {
+            return BlockContent.defaultSerializers.listItem(props)
+          },
+        }}
       />
     </LayoutPost>
   )

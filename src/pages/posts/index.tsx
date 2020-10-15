@@ -9,18 +9,29 @@ import { GET_POSTS } from "queries/get-posts"
 
 const Post: NextPage<{}> = () => {
   const { data } = usePostsQuery()
+  const formattedDate = (dateTime: string) => {
+    const d = new Date(dateTime)
+    return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+  }
   return (
     <LayoutPost>
       <h1>Posts</h1>
-      <ul>
-        {data.allPost.map((item) => (
-          <li key={item.slug.current}>
-            <Anchor href={`${POST_PATH}/${item.slug.current}`}>
-              {item.title}
-            </Anchor>
-          </li>
-        ))}
-      </ul>
+
+      {data.allPost.map((item) => (
+        <article key={item.slug.current} className="py-3">
+          <Anchor href={`${POST_PATH}/${item.slug.current}`}>
+            {item.title}
+          </Anchor>
+          <div className="text-xs">
+            Published{" "}
+            <time dateTime={item.publishedAt}>
+              {formattedDate(item.publishedAt)}
+            </time>
+          </div>
+
+          <p>{item.summary}</p>
+        </article>
+      ))}
     </LayoutPost>
   )
 }
