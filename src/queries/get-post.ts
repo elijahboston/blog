@@ -12,6 +12,13 @@ export const GET_POST = gql`
       author {
         name
       }
+      featuredImage {
+        asset {
+          path
+        }
+        attribution
+      }
+      summary
       bodyRaw
     }
   }

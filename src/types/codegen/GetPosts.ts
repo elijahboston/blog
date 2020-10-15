@@ -27,6 +27,7 @@ export interface GetPosts_allPost {
   slug: GetPosts_allPost_slug | null;
   publishedAt: any | null;
   author: GetPosts_allPost_author | null;
+  summary: string | null;
 }
 
 export interface GetPosts {
