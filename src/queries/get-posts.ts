@@ -12,6 +12,7 @@ export const GET_POSTS = gql`
       author {
         name
       }
+      summary
     }
   }
 `
