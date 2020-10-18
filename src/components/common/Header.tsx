@@ -30,7 +30,7 @@ export const Header: React.FC<{ compact: boolean }> = ({ compact }) => {
       })}
     >
       <div className="grid grid-cols-12">
-        <div className="col-span-6 lg:col-span-6 lg:col-start-4">
+        <div className="col-span-12 lg:col-span-8 lg:col-start-3">
           <header
             className={
               compact
@@ -54,7 +54,7 @@ export const Header: React.FC<{ compact: boolean }> = ({ compact }) => {
 
             <Link href="/">
               <h1
-                className={clsx({
+                className={clsx("hidden lg:visible", {
                   [titleStyle.compact.join(" ")]: compact,
                   [titleStyle.normal.join(" ")]: !compact,
                 })}

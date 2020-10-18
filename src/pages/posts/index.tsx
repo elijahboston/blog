@@ -22,7 +22,7 @@ const Post: NextPage<{}> = () => {
           <Anchor href={`${POST_PATH}/${item.slug.current}`}>
             {item.title}
           </Anchor>
-          <div className="text-xs">
+          <div className="text-xs text-gray-500">
             Published{" "}
             <time dateTime={item.publishedAt}>
               {formattedDate(item.publishedAt)}

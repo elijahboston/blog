@@ -30,13 +30,13 @@ p {
   line-height: 1.6rem;
   letter-spacing: 0.05rem;
 }
-a {
+/* a {
   @apply text-blue-400;
   @apply underline;
 }
 a:hover {
   @apply text-blue-600;
-}
+} */
 html {
   @apply text-2xl;
 }
@@ -58,6 +58,12 @@ body {
     #f4791f,
     #659999
   ); */
+}
+
+#__next,
+main,
+main > div {
+  height: 100%;
 }
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";

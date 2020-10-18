@@ -23,6 +23,8 @@ export const PrimaryAnchor: React.FC<PrimaryAnchorProps> = (props) => (
         "items-center",
         "justify-left",
         "no-underline",
+        "transition-colors",
+        "duration-500",
         "hover:text-white",
         "hover:border-white",
         props.className,
@@ -30,8 +32,8 @@ export const PrimaryAnchor: React.FC<PrimaryAnchorProps> = (props) => (
       {
         "text-gray-600": !props.active,
         "border-gray-600": !props.active,
-        "text-white": props.active,
-        "border-white": props.active,
+        "text-anchor": props.active,
+        "border-anchor": props.active,
       }
     )}
   >

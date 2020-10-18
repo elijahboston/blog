@@ -5,6 +5,7 @@ export const PREFETCH_DOMAINS = ["localhost"]
 
 export interface AnchorProps {
   href: string
+  target?: string
   as?: string
 }
 
@@ -17,7 +18,14 @@ const AnchorBase = React.forwardRef<
       "font-sans",
       "font-bold",
       "no-underline",
-      "border-b-2",
+      "transition",
+      "transition-colors",
+      "duration-200",
+      "text-anchor",
+      "border-b",
+      "border-transparent",
+      "hover:text-white",
+      "hover:border-white",
       props.className,
     ])}
     {...props}
@@ -46,12 +54,7 @@ export const Anchor: React.FC<
         (url && url.hostname && url.hostname in PREFETCH_DOMAINS) || false
       }
     >
-      <AnchorBase
-        className={clsx(["font-sans", "font-bold", props.className])}
-        {...props}
-      >
-        {props.children}
-      </AnchorBase>
+      <AnchorBase {...props}>{props.children}</AnchorBase>
     </Link>
   )
 }

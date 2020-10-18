@@ -11,7 +11,7 @@ import { SANITY_PROJECT_ID, SANITY_DATASET } from "constants/api"
 
 import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter"
 import js from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript"
-import docco from "react-syntax-highlighter/dist/cjs/styles/hljs/docco"
+import monokaiSublime from "react-syntax-highlighter/dist/cjs/styles/hljs/monokai-sublime"
 
 SyntaxHighlighter.registerLanguage("javascript", js)
 
@@ -51,7 +51,7 @@ const PostPage: NextPage<{}> = () => {
               return (
                 <SyntaxHighlighter
                   language="javascript"
-                  style={docco}
+                  style={monokaiSublime}
                   customStyle={{
                     padding: "1rem",
                   }}
