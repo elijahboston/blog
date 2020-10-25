@@ -35,7 +35,7 @@ export const Nav: React.FC<{ compact?: boolean }> = ({ compact }) => {
           className={clsx(
             "transition-height duration-500 ease-in-out overflow-y-hidden lg:flex flex-wrap lg:h-auto",
             {
-              "h-48": open,
+              "h-32": open,
               "h-0": !open,
             }
           )}

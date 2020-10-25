@@ -32,8 +32,8 @@ export const PrimaryAnchor: React.FC<PrimaryAnchorProps> = (props) => (
       {
         "text-gray-600": !props.active,
         "border-gray-600": !props.active,
-        "text-anchor": props.active,
-        "border-anchor": props.active,
+        "text-secondary": props.active,
+        "border-secondary": props.active,
       }
     )}
   >

@@ -21,7 +21,7 @@ const AnchorBase = React.forwardRef<
       "transition",
       "transition-colors",
       "duration-200",
-      "text-anchor",
+      "text-secondary",
       "border-b",
       "border-transparent",
       "hover:text-white",

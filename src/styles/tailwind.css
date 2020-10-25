@@ -47,17 +47,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: "100vh";
   color: #fff;
-  /* background: #659999; */
-  /* background: -webkit-linear-gradient(
-    to right,
-    #f4791f,
-    #659999
-  );
-  background: linear-gradient(
-    to right,
-    #f4791f,
-    #659999
-  ); */
 }
 
 #__next,
