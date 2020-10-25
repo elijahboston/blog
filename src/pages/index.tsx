@@ -7,7 +7,7 @@ import React from "react"
 import { PrimaryAnchor, PrimaryAnchorProps } from "components/kit/PrimaryAnchor"
 import { SITE_DATA } from "data/site"
 import { getPosts } from "util/get-posts"
-import Link from "next/link"
+import SvgTwitter from "components/icons/Twitter"
 
 const ContactLink: React.FC<PrimaryAnchorProps> = (props) => (
   <PrimaryAnchor className="border-gray-600 m-2" {...props} />
@@ -43,16 +43,26 @@ const Home: NextPage<{}> = () => (
     <Section title="Contact">
       <div className="flex flex-wrap justify-center lg:justify-start">
         <ContactLink
-          icon={<SvgGithub className="w-10 h-10 fill-current" />}
-          href={SITE_DATA.contactInfo.github}
+          icon={<SvgTwitter className="w-10 h-10 fill-current" />}
+          href={SITE_DATA.contactInfo.twitter}
         >
-          GitHub
+          Twitter
         </ContactLink>
         <ContactLink
           icon={<SvgLinkedin className="w-10 h-10 fill-current" />}
           href={SITE_DATA.contactInfo.linkedIn}
         >
           LinkedIn
+        </ContactLink>
+      </div>
+    </Section>
+    <Section title="Code">
+      <div className="flex flex-wrap justify-center lg:justify-start">
+        <ContactLink
+          icon={<SvgGithub className="w-10 h-10 fill-current" />}
+          href={SITE_DATA.contactInfo.github}
+        >
+          GitHub
         </ContactLink>
       </div>
     </Section>

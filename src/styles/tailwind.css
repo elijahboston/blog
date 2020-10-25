@@ -1,8 +1,8 @@
 @import "tailwindcss/base";
 h1 {
   @apply text-5xl;
-  letter-spacing: 0.06rem;
-  line-height: 3.5rem;
+  letter-spacing: 0.08rem;
+  line-height: 3.6rem;
 }
 h2 {
   @apply text-4xl;
@@ -27,16 +27,16 @@ h5 {
 p {
   @apply font-body;
   padding: 16px 0;
-  line-height: 1.3rem;
+  line-height: 1.6rem;
   letter-spacing: 0.05rem;
 }
-a {
+/* a {
   @apply text-blue-400;
   @apply underline;
 }
 a:hover {
   @apply text-blue-600;
-}
+} */
 html {
   @apply text-2xl;
 }
@@ -47,17 +47,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   height: "100vh";
   color: #fff;
-  /* background: #659999; */
-  /* background: -webkit-linear-gradient(
-    to right,
-    #f4791f,
-    #659999
-  );
-  background: linear-gradient(
-    to right,
-    #f4791f,
-    #659999
-  ); */
+}
+
+#__next,
+main,
+main > div {
+  height: 100%;
 }
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
