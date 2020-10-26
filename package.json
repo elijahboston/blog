@@ -1,0 +1,88 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS='--inspect' next dev",
+    "build": "next build",
+    "start": "next start",
+    "svgr": "npx @svgr/cli -d ./src/components/icons --typescript ./src/components/icons/svg",
+    "typecheck": "tsc --project . --noEmit",
+    "lint": "xo",
+    "lint:fix": "xo --fix --prettier",
+    "codegen": "dotenv -- apollo client:codegen src/types/codegen --endpoint=${NEXT_PUBLIC_SANITY_ENDPOINT} --target=typescript --outputFlat"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.2.3",
+    "@babel/core": "^7.11.6",
+    "@sanity/block-content-to-react": "^2.0.7",
+    "classnames": "^2.2.6",
+    "dotenv-cli": "^4.0.0",
+    "glob": "^7.1.6",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
+    "gray-matter": "^4.0.2",
+    "next": "9.4.2",
+    "raw-loader": "^4.0.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-markdown": "^4.3.1",
+    "react-syntax-highlighter": "^15.2.1",
+    "react-three-fiber": "^4.2.21",
+    "styled-jsx": "^3.3.0",
+    "svg-sprite-loader": "^5.0.0",
+    "three": "^0.120.1"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.10",
+    "@types/node": "^14.0.22",
+    "@types/react": "^16.9.42",
+    "@types/react-syntax-highlighter": "^11.0.5",
+    "@types/webpack": "^4.41.22",
+    "@types/webpack-env": "^1.15.3",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-config-xo": "^0.32.0",
+    "eslint-config-xo-react": "^0.23.0",
+    "eslint-config-xo-typescript": "^0.31.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^1.4.6",
+    "typescript": "^3.9.3",
+    "xo": "^0.34.1"
+  },
+  "xo": {
+    "envs": ["es6", "node"],
+    "extends": [
+      "xo-typescript",
+      "xo-react"
+    ],
+    "space": 2,
+    "prettier": true,
+    "semicolon": false,
+    "globals": [
+      "clsx",
+      "React",
+      "window"
+    ],
+    "ignores": [
+      "*.js",
+      "*.config.js"
+    ],
+    "rules": {
+      "no-void": "off",
+      "react/prop-types": "off",
+      "react/react-in-jsx-scope": "off",
+      "unicorn/no-abusive-eslint-disable": "off",
+      "import/no-unassigned-import": "off",
+      "@typescript-eslint/ban-types": "off",
+      "react/jsx-no-useless-fragment": "off"
+    }
+  },
+  "prettier": {
+    "semi": false
+  }
+}
