@@ -3,7 +3,7 @@ import {SITE_DATA} from 'data/site'
 import Link from 'next/link'
 import React from 'react'
 import {Cube} from './cube'
-import {Nav} from './Nav'
+import {Nav} from './nav'
 
 const titleStyle = {
   shared: ['font-display', 'text-2xl', 'font-thin', 'cursor-pointer', 'py-0'],
