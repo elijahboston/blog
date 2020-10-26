@@ -6,15 +6,4 @@
       "es6": true
   },
   "extends": ["xo", "xo-typescript"]
-  // "overrides": [
-  //   {
-  //     "files": ["**/*/.ts", "**/*/*.tsx"],
-  //     "rules": {
-  //       "no-void": "off",
-  //       "react/prop-types": "ignore",
-  //       "react/react-in-jsx-scope": "off",
-  //       "unicorn/no-abusive-eslint-disable": "off"
-  //     }
-  //   }
-  // ]
 }
