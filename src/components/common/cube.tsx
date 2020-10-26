@@ -1,4 +1,5 @@
 import React from 'react'
+
 export interface CubeProps {
   size?: 'lg' | 'sm' | 'xs'
 }
