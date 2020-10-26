@@ -1,20 +1,11 @@
 export const SITE_DATA = {
   siteTitle: "Elijah Boston",
   tagline: "Full Stack Developer",
-  aboutMe: "I like building cool stuff with React, TypeScript, and GraphQL.",
+  aboutMe:
+    "I specialize in building web applications and services with TypeScript, React, and Next.js",
   contactInfo: {
     github: "http://www.github.com/elijahboston",
     linkedIn: "http://www.linkedin.com/elijahboston",
     twitter: "http://www.twitter.com/elijahboston",
   },
-  recentWork: [
-    {
-      title: "A Place For Mom",
-      href: "http://www.aplaceformom.com",
-    },
-    {
-      title: "AJC.com",
-      href: "http://www.ajc.com",
-    },
-  ],
 }
