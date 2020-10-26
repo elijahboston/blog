@@ -1,5 +1,5 @@
-import React from "react"
-import Document, { Html, Head, Main, NextScript } from "next/document"
+import React from 'react'
+import Document, {Html, Head, Main, NextScript} from 'next/document'
 
 class DocumentOverride extends Document {
   render() {
@@ -9,7 +9,7 @@ class DocumentOverride extends Document {
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap"
             rel="stylesheet"
-          ></link>
+          />
         </Head>
         <body className="bg-body">
           <Main />

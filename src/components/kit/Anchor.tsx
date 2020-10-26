@@ -1,7 +1,7 @@
-import React, { useRef } from "react"
-import Link from "next/link"
+import React from 'react'
+import Link from 'next/link'
 
-export const PREFETCH_DOMAINS = ["localhost"]
+export const PREFETCH_DOMAINS = ['localhost']
 
 export interface AnchorProps {
   href: string
@@ -15,18 +15,18 @@ const AnchorBase = React.forwardRef<
 >((props, ref) => (
   <a
     className={clsx([
-      "font-sans",
-      "font-bold",
-      "no-underline",
-      "transition",
-      "transition-colors",
-      "duration-200",
-      "text-secondary",
-      "border-b",
-      "border-transparent",
-      "hover:text-white",
-      "hover:border-white",
-      props.className,
+      'font-sans',
+      'font-bold',
+      'no-underline',
+      'transition',
+      'transition-colors',
+      'duration-200',
+      'text-secondary',
+      'border-b',
+      'border-transparent',
+      'hover:text-white',
+      'hover:border-white',
+      props.className
     ])}
     {...props}
     ref={ref}
@@ -46,12 +46,12 @@ export const Anchor: React.FC<
 
   return (
     <Link
+      passHref
       href={props.href}
-      passHref={true}
-      // as={props.as}
+      // As={props.as}
       prefetch={
         // Only prefetch URLs on the same domain
-        (url && url.hostname && url.hostname in PREFETCH_DOMAINS) || false
+        (url?.hostname && url.hostname in PREFETCH_DOMAINS) || false
       }
     >
       <AnchorBase {...props}>{props.children}</AnchorBase>

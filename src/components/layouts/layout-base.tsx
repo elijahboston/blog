@@ -1,8 +1,8 @@
-import { Header } from "components/common/Header"
-import { Anchor } from "components/kit/Anchor"
-import { SITE_TITLE } from "constants/site"
-import Head from "next/head"
-import React from "react"
+import {Header} from 'components/common/header'
+import {Anchor} from 'components/kit/anchor'
+import {SITE_TITLE} from 'constants/site'
+import Head from 'next/head'
+import React from 'react'
 
 export interface LayoutProps {
   nav?: React.ReactNode
@@ -23,7 +23,7 @@ export const LayoutBase: React.FC<LayoutProps> = (props) => (
       <footer className="flex justify-center content-center py-10 text-xs text-gray-500">
         <p className="font-display">
           Built with <Anchor href="http://nextjs.org">Next.js</Anchor>. Icons
-          from{" "}
+          from{' '}
           <Anchor href="https://simpleicons.org" target="_blank">
             Simple Icons
           </Anchor>

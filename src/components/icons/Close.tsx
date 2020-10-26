@@ -1,6 +1,6 @@
-import * as React from "react"
+import * as React from 'react'
 
-function SvgClose(props: React.SVGProps<SVGSVGElement>) {
+const SvgClose = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg height={24} width={24} {...props}>
       <path d="M0 0h24v24H0z" fill="none" />

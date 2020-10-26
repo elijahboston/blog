@@ -1,20 +1,21 @@
-import SvgClose from "components/icons/Close"
-import SvgMenu from "components/icons/Menu"
-import React, { useRef, useState } from "react"
-import { NavItems } from "./NavItems"
+import SvgClose from 'components/icons/close'
+import SvgMenu from 'components/icons/menu'
+import React, {useRef, useState} from 'react'
+import {NavItems} from './nav-items'
 
-export const Nav: React.FC<{ compact?: boolean }> = ({ compact }) => {
+export const Nav: React.FC<{compact?: boolean}> = ({compact}) => {
   const menuRef = useRef<HTMLOListElement | null>(null)
   const [open, setOpen] = useState<boolean>(false)
 
   return (
     <nav
-      className={clsx("flex flex-col items-end lg:items-center", {
-        "pt-6": !compact,
+      className={clsx('flex flex-col items-end lg:items-center', {
+        'pt-6': !compact
       })}
     >
       {compact && (
         <button
+          type="button"
           className="text-white w-8 h-8 flex justify-center items-center lg:hidden"
           onClick={() => setOpen(!open)}
         >
@@ -32,14 +33,14 @@ export const Nav: React.FC<{ compact?: boolean }> = ({ compact }) => {
       )}
       {compact && (
         <ul
+          ref={menuRef}
           className={clsx(
-            "transition-height duration-500 ease-in-out overflow-y-hidden lg:flex flex-wrap lg:h-auto",
+            'transition-height duration-500 ease-in-out overflow-y-hidden lg:flex flex-wrap lg:h-auto',
             {
-              "h-32": open,
-              "h-0": !open,
+              'h-32': open,
+              'h-0': !open
             }
           )}
-          ref={menuRef}
         >
           <NavItems />
         </ul>

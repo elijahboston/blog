@@ -1,18 +1,19 @@
-import { NextPage } from "next"
-import React from "react"
-import { LayoutPost } from "components/layouts/LayoutPost"
-import { Anchor } from "components/kit/Anchor"
-import { initializeApollo } from "lib/apollo-client"
-import { usePostsQuery } from "hooks/use-posts"
-import { POST_PATH } from "constants/site"
-import { GET_POSTS } from "queries/get-posts"
+import {NextPage} from 'next'
+import React from 'react'
+import {LayoutPost} from 'components/layouts/layout-post'
+import {Anchor} from 'components/kit/anchor'
+import {initializeApollo} from 'lib/apollo-client'
+import {usePostsQuery} from 'hooks/use-posts'
+import {POST_PATH} from 'constants/site'
+import {GET_POSTS} from 'queries/get-posts'
 
-const Post: NextPage<{}> = () => {
-  const { data } = usePostsQuery()
+const Post: NextPage<Record<string, unknown>> = () => {
+  const {data} = usePostsQuery()
   const formattedDate = (dateTime: string) => {
     const d = new Date(dateTime)
     return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
   }
+
   return (
     <LayoutPost>
       <h1>Posts</h1>
@@ -23,7 +24,7 @@ const Post: NextPage<{}> = () => {
             {item.title}
           </Anchor>
           <div className="text-xs text-gray-500">
-            Published{" "}
+            Published{' '}
             <time dateTime={item.publishedAt}>
               {formattedDate(item.publishedAt)}
             </time>
@@ -42,13 +43,13 @@ export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   await apolloClient.query({
-    query: GET_POSTS,
+    query: GET_POSTS
   })
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    //revalidate: 1,
+      initialApolloState: apolloClient.cache.extract()
+    }
+    // Revalidate: 1,
   }
 }

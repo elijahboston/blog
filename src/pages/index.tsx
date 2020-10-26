@@ -1,45 +1,22 @@
-import { NextPage } from "next"
-import { LayoutHomepage } from "components/layouts/LayoutHomepage"
-import { Section } from "components/common/Section"
-import SvgGithub from "components/icons/Github"
-import SvgLinkedin from "components/icons/Linkedin"
-import React from "react"
-import { PrimaryAnchor, PrimaryAnchorProps } from "components/kit/PrimaryAnchor"
-import { SITE_DATA } from "data/site"
-import { getPosts } from "util/get-posts"
-import SvgTwitter from "components/icons/Twitter"
+import {NextPage} from 'next'
+import {LayoutHomepage} from 'components/layouts/layout-homepage'
+import {Section} from 'components/common/section'
+import SvgGithub from 'components/icons/github'
+import SvgLinkedin from 'components/icons/linkedin'
+import React from 'react'
+import {PrimaryAnchor, PrimaryAnchorProps} from 'components/kit/primary-anchor'
+import {SITE_DATA} from 'data/site'
+import SvgTwitter from 'components/icons/twitter'
 
 const ContactLink: React.FC<PrimaryAnchorProps> = (props) => (
   <PrimaryAnchor className="border-gray-600 m-2" {...props} />
 )
 
-const Home: NextPage<{}> = () => (
+const Home: NextPage<Record<string, unknown>> = () => (
   <LayoutHomepage>
     <Section title="About Me">
       <p className="text-center lg:text-left">{SITE_DATA.aboutMe}</p>
     </Section>
-    {/* {posts && (
-      <Section title="Posts">
-        <ul>
-          {posts.map((post) => (
-            <li>
-              <Link prefetch href={"posts/" + post.slug}>
-                {post.frontmatter.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
-    )} */}
-    {/* <Section title="Recent Work" backgroundColor="section-2">
-      <ul className="list-disc list-inside">
-        {recentWork.map((item) => (
-          <li>
-            <Anchor href={item.href}>{item.title}</Anchor>
-          </li>
-        ))}
-      </ul>
-    </Section> */}
     <Section title="Contact">
       <div className="flex flex-wrap justify-center lg:justify-start">
         <ContactLink
@@ -70,13 +47,3 @@ const Home: NextPage<{}> = () => (
 )
 
 export default Home
-
-export async function getStaticProps() {
-  const posts = getPosts()
-
-  return {
-    props: {
-      posts: posts.filter((post) => !!post.frontmatter.published),
-    },
-  }
-}

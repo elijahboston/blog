@@ -1,6 +1,5 @@
-import { LayoutBase, LayoutProps } from "./LayoutBase"
-import React from "react"
-import { Header } from "components/common/Header"
+import {LayoutBase, LayoutProps} from './layout-base'
+import React from 'react'
 
 export const LayoutHomepage: React.FC<LayoutProps> = (props) => (
   <LayoutBase compact={false}>

@@ -1,4 +1,4 @@
-import { BaseComponentProps } from "types/shared"
+import {BaseComponentProps} from 'types/shared'
 
 export interface SectionProps extends BaseComponentProps {
   title: string
