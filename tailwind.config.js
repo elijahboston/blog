@@ -22,9 +22,9 @@ module.exports = {
     },
     extend: {
       colors: {
-        body: "#33363a",
+        body: "#2e3d50",
         secondary: "rgb(255 150 125)",
-        footerBackground: "#2e3d50",
+        footerBackground: "#A66252", //"#718096",
         anchor: "rgb(249, 38, 114)",
       },
       // spacing: {

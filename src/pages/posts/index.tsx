@@ -39,7 +39,7 @@ const Post: NextPage<Record<string, unknown>> = () => {
 
 export default Post
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const apolloClient = initializeApollo()
 
   await apolloClient.query({
