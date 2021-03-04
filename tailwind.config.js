@@ -1,11 +1,13 @@
+const plugins = require('./tailwind.plugins').plugins
+const theme = require('./tailwind.theme').theme
+
 module.exports = {
-  purge: [
-    "./src/pages/**/*.{js,jsx,ts,tsx}",
-    "./src/components/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: require("./tailwind.theme").theme,
-  variants: {
-    borderRadius: ["responsive", "last"],
+  future: {
+    // removeDeprecatedGapUtilities: true,
+    // purgeLayersByDefault: true,
   },
-  plugins: require("./tailwind.plugins").plugins,
+  purge: [],
+  variants: {},
+  plugins,
+  theme
 }

@@ -1,10 +1,10 @@
 const purgecss = [
-  "@fullhuman/postcss-purgecss",
+  '@fullhuman/postcss-purgecss',
   {
     // Specify the paths to all of the template files
     content: [
-      "./src/pages/**/*.{js,jsx,ts,tsx}",
-      "./src/components/**/*.{js,jsx,ts,tsx}",
+      './src/pages/**/*.{js,jsx,ts,tsx}',
+      './src/components/**/*.{js,jsx,ts,tsx}'
     ],
     // This is the function used to extract class names from the templates
     defaultExtractor: (content) => {
@@ -14,16 +14,16 @@ const purgecss = [
       const innerMatches =
         content.match(/[^<>"'`\\s.()]*[^<>"'`\\s.():]/g) || []
       return broadMatches.concat(innerMatches)
-    },
-  },
+    }
+  }
 ]
 
 module.exports = {
   plugins: [
     // purgecss,
-    "postcss-import",
-    "tailwindcss",
-    "autoprefixer",
-    "postcss-preset-env",
-  ],
+    'postcss-import',
+    'tailwindcss',
+    'autoprefixer',
+    'postcss-preset-env'
+  ]
 }

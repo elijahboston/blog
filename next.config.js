@@ -1,28 +1,27 @@
-// const SpriteLoaderPlugin = require("svg-sprite-loader/plugin")
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+})
 
-module.exports = {
-  webpack: function (config, { webpack }) {
-    const rules = [
-      // {
-      //   test: /\.svg$/,
-      //   use: ["svg-sprite-loader", "svgo-loader"],
-      // },
-      {
-        test: /\.md$/,
-        use: "raw-loader",
-      },
-    ]
-    config.module.rules.push(...rules)
+module.exports = (phase, defaultConfig) => {
+  const config = withBundleAnalyzer(defaultConfig)
 
-    const plugins = [
-      // new SpriteLoaderPlugin(),
-      new webpack.ProvidePlugin({
-        clsx: "classnames",
-      }),
-    ]
-
-    config.plugins.push(...plugins)
-
-    return config
-  },
+  return {
+    ...config,
+    webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+      // Note: we provide webpack above so you should not `require` it
+      // Perform customizations to webpack config
+      config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          clsx: 'classnames'
+        })
+      )
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'url-loader']
+      })
+      // Important: return the modified config
+      return config
+    }
+  }
 }
