@@ -8,7 +8,7 @@ export const NavCentered: React.FC<{ compact?: boolean }> = ({ compact }) => {
 
   return (
     <nav className='flex flex-col items-center lg:items-center pt-6'>
-      <ul className='flex flex-row justify-center'>
+      <ul className='w-full col-start-8 flex flex-row justify-center'>
         {NAV_DATA.map((navItem: NavItemProps) => (
           <NavItem
             key={navItem.label}

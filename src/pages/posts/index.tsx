@@ -19,11 +19,11 @@ const Post: NextPage<Record<string, unknown>> = () => {
       StickyNav={<StickyNav />}
       Content={
         <>
-          <h1>Posts</h1>
+          <h1 className='text-h1 text-bodyTextColor'>Posts</h1>
           {data.allPost.map((item) => (
             <article key={item.slug.current} className='py-3'>
               <Anchor href={`${POST_PATH}/${item.slug.current}`}>
-                {item.title}
+                <h2 className='text-h2'>{item.title}</h2>
               </Anchor>
               <div className='text-xs text-gray-500'>
                 Published{' '}
@@ -32,7 +32,7 @@ const Post: NextPage<Record<string, unknown>> = () => {
                 </time>
               </div>
 
-              <p>{item.summary}</p>
+              <p className='text-body text-bodyTextColor'>{item.summary}</p>
             </article>
           ))}
         </>

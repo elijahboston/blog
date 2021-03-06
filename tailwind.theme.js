@@ -5,10 +5,11 @@ module.exports.theme = {
   },
   extend: {
     colors: {
-      body: '#33363a',
+      pageBackgroundColor: '#33363a',
+      bodyTextColor: '#fff',
       secondary: 'rgb(255 150 125)',
       footerBackground: '#2e3d50',
-      anchor: 'rgb(249, 38, 114)'
+      anchor: 'rgb(255 150 125)' // 'rgb(249, 38, 114)'
     }
   }
 }

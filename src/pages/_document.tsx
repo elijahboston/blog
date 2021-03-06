@@ -1,4 +1,3 @@
-import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class DocumentOverride extends Document {
@@ -11,7 +10,7 @@ class DocumentOverride extends Document {
             rel='stylesheet'
           />
         </Head>
-        <body className='bg-body'>
+        <body className='bg-pageBackgroundColor'>
           <Main />
           <NextScript />
         </body>

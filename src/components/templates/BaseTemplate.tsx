@@ -10,9 +10,11 @@ export const BaseTemplate: React.FC<{
   <>
     {StickyNav}
     <div className='grid grid-cols-12'>
-      {Header && <div className='col-span-12'>{Header}</div>}
-      {Nav && <div className='col-span-12'>{Nav}</div>}
-      <div className='col-span-10 col-start-2'>{Content}</div>
+      <div className='col-span-8 col-start-3'>
+        {Header && <div>{Header}</div>}
+        {Nav && <div>{Nav}</div>}
+        <div className='col-span-10 col-start-2'>{Content}</div>
+      </div>
       <div className='col-span-12'>{Footer}</div>
     </div>
   </>

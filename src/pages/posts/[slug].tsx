@@ -26,7 +26,7 @@ const PostPage: PageGetPostComp = ({ data, error }) => {
         <PostTemplate
           Content={
             <>
-              <h1 className='font-display'>{post.title}</h1>
+              <h1 className='text-hero text-bodyTextColor'>{post.title}</h1>
               {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
               <PostContent bodyRaw={post.bodyRaw} />
             </>
@@ -42,15 +42,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { query } = ctx
 
   const slug = Array.isArray(query.slug) ? query.slug[0] : query.slug || null
-  console.log('SLUG', slug)
 
   const res = await ssrGetPost.getServerPage({
     variables: {
       slug
     }
   })
-
-  console.log('resp', res.props.data.allPost[0])
 
   if (res.props.error || !res.props.data?.allPost?.length) {
     return {

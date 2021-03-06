@@ -7,7 +7,7 @@ export interface NavItemProps {
 }
 export const NavItem: React.FC<NavItemProps> = ({ rootPath, path, label }) => {
   return (
-    <li>
+    <li className='mx-2'>
       <NavAnchor
         active={Boolean(`/${rootPath}` === path)}
         href={path}

@@ -1,4 +1,3 @@
-const plugins = require('./tailwind.plugins').plugins
 const theme = require('./tailwind.theme').theme
 
 module.exports = {
@@ -7,7 +6,12 @@ module.exports = {
     // purgeLayersByDefault: true,
   },
   purge: [],
-  variants: {},
-  plugins,
+  variants: {
+    borderRadius: ['responsive', 'last']
+  },
+  plugins: [
+    require('./tailwind-custom-plugins/buttons'),
+    require('./tailwind-custom-plugins/typography')
+  ],
   theme
 }
