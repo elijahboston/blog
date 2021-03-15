@@ -4,11 +4,12 @@ import { PostContent } from '~/components/organisms/PostContent'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { Footer } from '~/components/organisms/Footer'
 import { PostTemplate } from '~/components/templates/PostTemplate'
-import { StickyNav } from '~/components/organisms/StickyNav'
 import { GetServerSideProps } from 'next'
 import { PageGetPostComp, ssrGetPost } from '~/generated/page'
 import { withApollo } from '~/components/withApollo'
 import Error from 'next/error'
+import { Nav } from '~/components/organisms/Nav'
+import { BreadCrumbs } from '~/components/molecules/Breacrumbs'
 
 SyntaxHighlighter.registerLanguage('javascript', js)
 
@@ -21,12 +22,26 @@ const PostPage: PageGetPostComp = ({ data, error }) => {
 
   return (
     <BaseTemplate
-      StickyNav={<StickyNav />}
+      StickyNav={<Nav />}
       Content={
         <PostTemplate
           Content={
             <>
-              <h1 className='text-hero text-bodyTextColor'>{post.title}</h1>
+              <BreadCrumbs
+                crumbs={[
+                  {
+                    href: '/',
+                    label: 'Home'
+                  },
+                  {
+                    href: '/posts',
+                    label: 'Posts'
+                  }
+                ]}
+              />
+              <h1 className='my-10 text-hero text-bodyTextColor'>
+                {post.title}
+              </h1>
               {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
               <PostContent bodyRaw={post.bodyRaw} />
             </>

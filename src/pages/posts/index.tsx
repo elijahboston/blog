@@ -2,10 +2,11 @@ import { GetServerSideProps, NextPage } from 'next'
 import { POST_PATH } from '~/constants/site'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { Footer } from '~/components/organisms/Footer'
-import { StickyNav } from '~/components/organisms/StickyNav'
 import { Anchor } from '~/components/atoms/Anchor'
 import { ssrGetPosts } from '~/generated/page'
 import { withApollo } from '~/components/withApollo'
+import { Nav } from '~/components/organisms/Nav'
+import Link from 'next/link'
 
 const Post: NextPage<Record<string, unknown>> = () => {
   const { data } = ssrGetPosts.usePage()
@@ -16,16 +17,18 @@ const Post: NextPage<Record<string, unknown>> = () => {
 
   return (
     <BaseTemplate
-      StickyNav={<StickyNav />}
+      StickyNav={<Nav />}
       Content={
         <>
-          <h1 className='text-h1 text-bodyTextColor'>Posts</h1>
+          <h1 className='text-hero my-10 text-bodyTextColor'>Posts</h1>
           {data.allPost.map((item) => (
-            <article key={item.slug.current} className='py-3'>
-              <Anchor href={`${POST_PATH}/${item.slug.current}`}>
-                <h2 className='text-h2'>{item.title}</h2>
-              </Anchor>
-              <div className='text-xs text-gray-500'>
+            <article key={item.slug.current} className='mb-10'>
+              <Link href={`${POST_PATH}/${item.slug.current}`}>
+                <Anchor href={`${POST_PATH}/${item.slug.current}`}>
+                  <h2 className='text-h2'>{item.title}</h2>
+                </Anchor>
+              </Link>
+              <div className='text-xs mb-5 text-gray-500'>
                 Published{' '}
                 <time dateTime={item.publishedAt}>
                   {formattedDate(item.publishedAt)}

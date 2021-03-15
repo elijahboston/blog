@@ -1,15 +1,26 @@
 module.exports.theme = {
   fontFamily: {
-    display: ['Source Sans Pro', 'sans-serif'],
-    body: ['Source Serif Pro', 'serif']
+    display: 'Source Sans Pro, sans-serif',
+    body: 'Source Serif Pro, serif'
   },
   extend: {
     colors: {
-      pageBackgroundColor: '#33363a',
-      bodyTextColor: '#fff',
-      secondary: 'rgb(255 150 125)',
-      footerBackground: '#2e3d50',
-      anchor: 'rgb(255 150 125)' // 'rgb(249, 38, 114)'
+      bodyTextColor: '#000',
+      secondary: '#00a1ff', // 'rgb(255 150 125)',
+      anchor: '#00a1ff', // rgb(255 150 125)',
+      buttons: {
+        color: '#000',
+        borderColor: 'gray',
+        hover: {
+          color: '#00a1ff',
+          borderColor: '#00a1ff'
+        }
+      },
+      backgrounds: {
+        page: '#fff',
+        nav: '#fff',
+        footer: '#2e3d50'
+      }
     }
   }
 }

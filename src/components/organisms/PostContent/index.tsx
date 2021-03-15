@@ -4,6 +4,7 @@ import BlockContent from '@sanity/block-content-to-react'
 import dynamic from 'next/dynamic'
 import { SyntaxHighlighterProps } from 'react-syntax-highlighter'
 import { NONAME } from 'dns'
+import React from 'react'
 
 const PrismHightlight = dynamic<SyntaxHighlighterProps>(() =>
   import('react-syntax-highlighter').then((mod) => mod.PrismAsyncLight)
@@ -25,7 +26,16 @@ export const PostContent: React.FC<PostContentProps> = ({ bodyRaw }) => {
         },
         types: {
           block: (props) => {
+            const { style = 'normal' } = props.node
+            const level = style.replace(/[^\d]/g, '')
+
             switch (props.node.style) {
+              case /^h\d/.test(style):
+                return React.createElement(
+                  style,
+                  { className: `text-${level}` },
+                  props.children
+                )
               case 'normal':
                 return (
                   <p className='font-body text-body text-bodyTextColor my-4'>

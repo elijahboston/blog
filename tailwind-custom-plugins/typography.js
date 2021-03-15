@@ -4,7 +4,8 @@ module.exports = plugin(function ({ addComponents, theme }) {
   const typography = {
     '.text-hero': {
       fontFamily: theme('fontFamily.display'),
-      fontSize: '2.25rem'
+      fontSize: '2.25rem',
+      lineHeight: '2.5rem'
     },
     '.text-h1': {
       fontFamily: theme('fontFamily.display'),

@@ -6,8 +6,8 @@ import SvgTwitter from '~/components/icons/twitter'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { Footer } from '~/components/organisms/Footer'
 import { HomepageTemplate } from '~/components/templates/HomepageTemplate'
-import { NavCentered } from '~/components/organisms/NavCentered'
-import { Header } from '~/components/organisms/Header'
+import { HomepageNav } from '~/components/organisms/HomepageNav'
+import { HomepageHero } from '~/components/organisms/HomepageHero'
 import { NavAnchor, NavAnchorProps } from '~/components/atoms/NavAnchor'
 import { NextPage } from 'next'
 
@@ -17,8 +17,8 @@ const ContactLink: React.FC<NavAnchorProps> = (props) => (
 
 const Home: NextPage<Record<string, unknown>> = () => (
   <BaseTemplate
-    Header={<Header />}
-    Nav={<NavCentered />}
+    Header={<HomepageHero />}
+    Nav={<HomepageNav />}
     Content={
       <HomepageTemplate
         Content={

@@ -3,7 +3,7 @@ import { SITE_DATA } from '~/data/site'
 import Link from 'next/link'
 import { Anchor } from '~/components/atoms/Anchor'
 
-export const Header: React.FC<{ compact?: boolean }> = ({ compact }) => {
+export const HomepageHero: React.FC<{ compact?: boolean }> = ({ compact }) => {
   return (
     <div className='col-span-12'>
       <div className='grid grid-cols-12'>
@@ -21,11 +21,12 @@ export const Header: React.FC<{ compact?: boolean }> = ({ compact }) => {
               <h1
                 className={clsx([
                   'font-display',
+                  'font-bold',
                   'text-2xl',
                   'font-thin',
                   'cursor-pointer',
                   'py-0',
-                  'text-white',
+                  'text-black',
                   'text-3xl',
                   'py-0'
                 ])}
