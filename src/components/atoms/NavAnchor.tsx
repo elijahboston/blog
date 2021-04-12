@@ -9,12 +9,16 @@ export interface NavAnchorProps {
 export const NavAnchor: React.FC<NavAnchorProps> = (props) => (
   <a
     href={props.href}
-    className={clsx(props.className, 'primary-anchor', {
-      'primary-anchor-active': props.active
-    })}
+    className={clsx(
+      props.className,
+      'primary-anchor nav-primary-anchor hover:gradient-border',
+      {
+        'gradient-border': props.active
+      }
+    )}
   >
     {props.icon && <span className='self-start'>{props.icon}</span>}
-    <span className={props.icon ? 'pl-4 self-center' : ''}>
+    <span className={props.icon ? 'pl-4 self-center' : 'text-bodyTextColor'}>
       {props.children}
     </span>
   </a>

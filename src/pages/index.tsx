@@ -1,63 +1,106 @@
-import { Section } from '~/components/molecules/Section'
-import SvgGithub from '~/components/icons/github'
-import SvgLinkedin from '~/components/icons/linkedin'
 import { SITE_DATA } from '~/data/site'
-import SvgTwitter from '~/components/icons/twitter'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { Footer } from '~/components/organisms/Footer'
 import { HomepageTemplate } from '~/components/templates/HomepageTemplate'
-import { HomepageNav } from '~/components/organisms/HomepageNav'
 import { HomepageHero } from '~/components/organisms/HomepageHero'
-import { NavAnchor, NavAnchorProps } from '~/components/atoms/NavAnchor'
-import { NextPage } from 'next'
+import { GetServerSideProps, NextPage } from 'next'
+import { withApollo } from '~/components/withApollo'
+import { ssrGetPosts } from '~/generated/page'
+import { POST_PATH } from '~/constants/site'
+import Link from 'next/link'
+import { Anchor } from '~/components/atoms/Anchor'
+import { InlineAnchor } from '~/components/atoms/InlineAnchor'
 
-const ContactLink: React.FC<NavAnchorProps> = (props) => (
-  <NavAnchor className='border-gray-600 m-2' {...props} />
-)
+const Home: NextPage<Record<string, unknown>> = () => {
+  const { data } = ssrGetPosts.usePage()
 
-const Home: NextPage<Record<string, unknown>> = () => (
-  <BaseTemplate
-    Header={<HomepageHero />}
-    Nav={<HomepageNav />}
-    Content={
-      <HomepageTemplate
-        Content={
-          <>
-            <Section title='About Me'>
-              <p className='text-center lg:text-left'>{SITE_DATA.aboutMe}</p>
-            </Section>
-            <Section title='Contact'>
-              <div className='flex flex-wrap justify-center lg:justify-start'>
-                <ContactLink
-                  icon={<SvgTwitter className='w-10 h-10 fill-current' />}
-                  href={SITE_DATA.contactInfo.twitter}
-                >
-                  Twitter
-                </ContactLink>
-                <ContactLink
-                  icon={<SvgLinkedin className='w-10 h-10 fill-current' />}
-                  href={SITE_DATA.contactInfo.linkedIn}
-                >
+  const formattedDate = (dateTime: string) => {
+    const d = new Date(dateTime)
+    return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+  }
+
+  return (
+    <BaseTemplate
+      Header={<HomepageHero />}
+      Content={
+        <HomepageTemplate
+          Content={
+            <>
+              <p className='text-body text-center text-bodyTextColor my-10'>
+                {SITE_DATA.aboutMe}
+              </p>
+
+              <p className='text-body text-center text-bodyTextColor my-10'>
+                You can find me on{' '}
+                <InlineAnchor href={SITE_DATA.contactInfo.linkedIn}>
                   LinkedIn
-                </ContactLink>
-              </div>
-            </Section>
-            <Section title='Code'>
-              <div className='flex flex-wrap justify-center lg:justify-start'>
-                <ContactLink
-                  icon={<SvgGithub className='w-10 h-10 fill-current' />}
-                  href={SITE_DATA.contactInfo.github}
-                >
-                  GitHub
-                </ContactLink>
-              </div>
-            </Section>
-          </>
-        }
-      />
-    }
-    Footer={<Footer />}
-  />
-)
+                </InlineAnchor>{' '}
+                or check out my code on{' '}
+                <InlineAnchor href={SITE_DATA.contactInfo.github}>
+                  Github
+                </InlineAnchor>
+                .
+              </p>
 
-export default Home
+              {data.allPost.map((item) => (
+                <article key={item.slug.current} className='mb-10'>
+                  <Link href={`${POST_PATH}/${item.slug.current}`}>
+                    <Anchor href={`${POST_PATH}/${item.slug.current}`}>
+                      <h2 className='text-h2 gradient-text bg-clip-text'>
+                        {item.title}
+                      </h2>
+                    </Anchor>
+                  </Link>
+                  <div className='text-xs my-2 text-gray-500'>
+                    Published{' '}
+                    <time dateTime={item.publishedAt}>
+                      {formattedDate(item.publishedAt)}
+                    </time>
+                  </div>
+
+                  <p className='text-body text-gray-500'>{item.summary}</p>
+                </article>
+              ))}
+              {/* <Section title='About Me'></Section>
+              <Section title='Contact'>
+                <div className='flex flex-wrap justify-center lg:justify-start'>
+                  <ContactLink
+                    icon={
+                      <SvgTwitter className='w-10 h-10 fill-current gradient-text bg-clip-text' />
+                    }
+                    href={SITE_DATA.contactInfo.twitter}
+                  >
+                    Twitter
+                  </ContactLink>
+                  <ContactLink
+                    icon={<SvgLinkedin className='w-10 h-10 fill-current' />}
+                    href={SITE_DATA.contactInfo.linkedIn}
+                  >
+                    LinkedIn
+                  </ContactLink>
+                </div>
+              </Section>
+              <Section title='Code'>
+                <div className='flex flex-wrap justify-center lg:justify-start'>
+                  <ContactLink
+                    icon={<SvgGithub className='w-10 h-10 fill-current' />}
+                    href={SITE_DATA.contactInfo.github}
+                  >
+                    GitHub
+                  </ContactLink>
+                </div>
+              </Section> */}
+            </>
+          }
+        />
+      }
+      Footer={<Footer />}
+    />
+  )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return await ssrGetPosts.getServerPage({}, ctx)
+}
+
+export default withApollo(ssrGetPosts.withPage(() => ({}))(Home))

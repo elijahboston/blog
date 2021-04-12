@@ -52,6 +52,7 @@ export const PostContent: React.FC<PostContentProps> = ({ bodyRaw }) => {
                 language='javascript'
                 style={theme}
                 customStyle={{
+                  background: '#18072b',
                   padding: '1rem',
                   border: 'none',
                   margin: '2rem 0'

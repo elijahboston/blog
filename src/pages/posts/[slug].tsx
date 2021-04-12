@@ -8,8 +8,7 @@ import { GetServerSideProps } from 'next'
 import { PageGetPostComp, ssrGetPost } from '~/generated/page'
 import { withApollo } from '~/components/withApollo'
 import Error from 'next/error'
-import { Nav } from '~/components/organisms/Nav'
-import { BreadCrumbs } from '~/components/molecules/Breacrumbs'
+import { PostNav } from '~/components/organisms/PostNav'
 
 SyntaxHighlighter.registerLanguage('javascript', js)
 
@@ -22,24 +21,12 @@ const PostPage: PageGetPostComp = ({ data, error }) => {
 
   return (
     <BaseTemplate
-      StickyNav={<Nav />}
+      Nav={<PostNav />}
       Content={
         <PostTemplate
           Content={
             <>
-              <BreadCrumbs
-                crumbs={[
-                  {
-                    href: '/',
-                    label: 'Home'
-                  },
-                  {
-                    href: '/posts',
-                    label: 'Posts'
-                  }
-                ]}
-              />
-              <h1 className='my-10 text-hero text-bodyTextColor'>
+              <h1 className='my-10 text-hero text-bodyTextColor gradient-text bg-clip-text'>
                 {post.title}
               </h1>
               {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}

@@ -2,43 +2,36 @@ import { Cube } from '~/components/molecules/Cube'
 import { SITE_DATA } from '~/data/site'
 import Link from 'next/link'
 import { Anchor } from '~/components/atoms/Anchor'
+import { AnimeCube } from '~/components/molecules/AnimeCube'
 
-export const HomepageHero: React.FC<{ compact?: boolean }> = ({ compact }) => {
+export const HomepageHero: React.FC<{}> = () => {
   return (
-    <div className='col-span-12'>
-      <div className='grid grid-cols-12'>
-        <div className='col-span-12 lg:col-span-8 lg:col-start-3'>
-          <header className='flex flex-col justify-center items-center pt-6 md:pt-6'>
-            <div className='m-10'>
-              <Link href='/'>
-                <a>
-                  <Cube size='lg' />
-                </a>
-              </Link>
-            </div>
-
-            <Anchor href='/'>
-              <h1
-                className={clsx([
-                  'font-display',
-                  'font-bold',
-                  'text-2xl',
-                  'font-thin',
-                  'cursor-pointer',
-                  'py-0',
-                  'text-black',
-                  'text-3xl',
-                  'py-0'
-                ])}
-              >
-                {SITE_DATA.siteTitle}
-              </h1>
-            </Anchor>
-
-            <h2 className='text-gray-600 text-2xl'>{SITE_DATA.tagline}</h2>
-          </header>
-        </div>
+    <header className='flex flex-col justify-center items-center mt-8 mb-4'>
+      <div className='my-20'>
+        <Link href='/'>
+          <a>
+            <AnimeCube />
+          </a>
+        </Link>
       </div>
-    </div>
+
+      <Anchor href='/'>
+        <h1
+          className={clsx([
+            'font-display',
+            'font-bold',
+            'text-2xl',
+            'font-thin',
+            'cursor-pointer',
+            'text-white',
+            'text-3xl'
+          ])}
+        >
+          {SITE_DATA.siteTitle}
+        </h1>
+      </Anchor>
+
+      <h2 className='text-gray-600 text-2xl'>{SITE_DATA.tagline}</h2>
+    </header>
   )
 }

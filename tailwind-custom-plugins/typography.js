@@ -9,19 +9,19 @@ module.exports = plugin(function ({ addComponents, theme }) {
     },
     '.text-h1': {
       fontFamily: theme('fontFamily.display'),
-      fontSize: '1.75rem'
+      fontSize: '2.25rem'
     },
     '.text-h2': {
       fontFamily: theme('fontFamily.display'),
-      fontSize: '1.5rem'
+      fontSize: '2rem'
     },
     '.text-h3': {
       fontFamily: theme('fontFamily.display'),
-      fontSize: '1.125rem'
+      fontSize: '1.8rem'
     },
     '.text-h4': {
       fontFamily: theme('fontFamily.display'),
-      fontSize: '1.25rem'
+      fontSize: '1.5rem'
     },
     '.text-h5': {
       fontFamily: theme('fontFamily.display'),
@@ -31,7 +31,7 @@ module.exports = plugin(function ({ addComponents, theme }) {
       fontFamily: theme('fontFamily.body'),
       fontSize: '1.2rem',
       letterSpacing: '.08rem',
-      lineHeight: '1.8rempx'
+      lineHeight: '2.3rem'
     },
     '.text-button': {
       fontFamily: theme('fontFamily.body'),

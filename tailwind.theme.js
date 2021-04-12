@@ -5,11 +5,13 @@ module.exports.theme = {
   },
   extend: {
     colors: {
-      bodyTextColor: '#000',
+      primaryGradient: 'linear-gradient(to right, #8a2387, #e94057, #f27121)',
+      bodyTextColor: '#fff',
       secondary: '#00a1ff', // 'rgb(255 150 125)',
-      anchor: '#00a1ff', // rgb(255 150 125)',
+      anchor: '#f27121', // rgb(255 150 125)',
+      anchorUnderline: '#00a1ff', // rgb(255 150 125)',
       buttons: {
-        color: '#000',
+        color: '#fff',
         borderColor: 'gray',
         hover: {
           color: '#00a1ff',
@@ -17,8 +19,8 @@ module.exports.theme = {
         }
       },
       backgrounds: {
-        page: '#fff',
-        nav: '#fff',
+        page: '#0f041b', // #0f041b
+        nav: '#0f041b',
         footer: '#2e3d50'
       }
     }

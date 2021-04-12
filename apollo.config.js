@@ -1,4 +1,5 @@
 module.exports = {
+  excludes: ['**/queries/**/*'],
   client: {
     service: {
       name: 'sanity',
