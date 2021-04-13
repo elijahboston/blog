@@ -1,8 +1,7 @@
-import { Cube } from '~/components/molecules/Cube'
 import { SITE_DATA } from '~/data/site'
 import Link from 'next/link'
 import { Anchor } from '~/components/atoms/Anchor'
-import { AnimeCube } from '~/components/molecules/AnimeCube'
+import { SliceCube } from '~/components/molecules/SliceCube'
 
 export const HomepageHero: React.FC<{}> = () => {
   return (
@@ -10,7 +9,7 @@ export const HomepageHero: React.FC<{}> = () => {
       <div className='my-20'>
         <Link href='/'>
           <a>
-            <AnimeCube />
+            <SliceCube />
           </a>
         </Link>
       </div>

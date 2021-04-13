@@ -38,6 +38,10 @@ const Home: NextPage<Record<string, unknown>> = () => {
                 or check out my code on{' '}
                 <InlineAnchor href={SITE_DATA.contactInfo.github}>
                   Github
+                </InlineAnchor>{' '}
+                and{' '}
+                <InlineAnchor href={SITE_DATA.contactInfo.codeSandbox}>
+                  CodeSandbox
                 </InlineAnchor>
                 .
               </p>
@@ -61,35 +65,6 @@ const Home: NextPage<Record<string, unknown>> = () => {
                   <p className='text-body text-gray-500'>{item.summary}</p>
                 </article>
               ))}
-              {/* <Section title='About Me'></Section>
-              <Section title='Contact'>
-                <div className='flex flex-wrap justify-center lg:justify-start'>
-                  <ContactLink
-                    icon={
-                      <SvgTwitter className='w-10 h-10 fill-current gradient-text bg-clip-text' />
-                    }
-                    href={SITE_DATA.contactInfo.twitter}
-                  >
-                    Twitter
-                  </ContactLink>
-                  <ContactLink
-                    icon={<SvgLinkedin className='w-10 h-10 fill-current' />}
-                    href={SITE_DATA.contactInfo.linkedIn}
-                  >
-                    LinkedIn
-                  </ContactLink>
-                </div>
-              </Section>
-              <Section title='Code'>
-                <div className='flex flex-wrap justify-center lg:justify-start'>
-                  <ContactLink
-                    icon={<SvgGithub className='w-10 h-10 fill-current' />}
-                    href={SITE_DATA.contactInfo.github}
-                  >
-                    GitHub
-                  </ContactLink>
-                </div>
-              </Section> */}
             </>
           }
         />

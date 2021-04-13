@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AnimeCube } from '~/components/molecules/AnimeCube'
+import { SliceCube } from '~/components/molecules/SliceCube'
 
 export interface PostNavProps {}
 
@@ -15,8 +15,8 @@ export const PostNav: React.FC<PostNavProps> = (props) => {
     >
       <Link href='/'>
         <a>
-          <div className='flex items-center border border-transparent rounded-full group-hover:border-gray-700'>
-            <AnimeCube minSize={2} />
+          <div className='flex items-center border border-transparent rounded-full'>
+            <SliceCube slices={5} size={2} distanceBetweenSlices={0.5} />
             <h2 className='transition-colors text-h2 justify-start ml-5 text-gray-700 group-hover:text-white'>
               elijah boston
             </h2>
