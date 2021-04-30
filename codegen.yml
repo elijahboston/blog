@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://web-hydra.dev.aplaceformom.com/graphql'
+schema: 'https://hjl3cns4.api.sanity.io/v1/graphql/production/default'
 documents: 'src/**/*.ts'
 generates:
   src/generated/graphql.tsx:

@@ -1,15 +1,14 @@
-import { NextPage } from 'next'
-import { initializeApollo } from '~/components/lib/apollo-client'
-import { usePostsQuery } from '~/hooks/use-posts'
+import { GetServerSideProps, NextPage } from 'next'
 import { POST_PATH } from '~/constants/site'
-import { GET_POSTS } from '~/queries/get-posts'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { Footer } from '~/components/organisms/Footer'
 import { StickyNav } from '~/components/organisms/StickyNav'
 import { Anchor } from '~/components/atoms/Anchor'
+import { ssrGetPosts } from '~/generated/page'
+import { withApollo } from '~/components/withApollo'
 
 const Post: NextPage<Record<string, unknown>> = () => {
-  const { data } = usePostsQuery()
+  const { data } = ssrGetPosts.usePage()
   const formattedDate = (dateTime: string) => {
     const d = new Date(dateTime)
     return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
@@ -43,19 +42,8 @@ const Post: NextPage<Record<string, unknown>> = () => {
   )
 }
 
-export default Post
-
-export async function getServerSideProps() {
-  const apolloClient = initializeApollo()
-
-  await apolloClient.query({
-    query: GET_POSTS
-  })
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract()
-    }
-    // Revalidate: 1,
-  }
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return await ssrGetPosts.getServerPage({}, ctx)
 }
+
+export default withApollo(ssrGetPosts.withPage(() => ({}))(Post))
