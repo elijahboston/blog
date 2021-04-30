@@ -3,6 +3,13 @@ module.exports.theme = {
     display: 'Source Sans Pro, sans-serif',
     body: 'Source Serif Pro, serif'
   },
+  fontSize: {
+    xs: '.8rem',
+    sm: '1rem',
+    md: '1.5rem',
+    lg: '2rem',
+    xl: '2.5rem'
+  },
   extend: {
     colors: {
       primaryGradient: 'linear-gradient(to right, #8a2387, #e94057, #f27121)',
@@ -19,8 +26,8 @@ module.exports.theme = {
         }
       },
       backgrounds: {
-        page: '#0f041b', // #0f041b
-        nav: '#0f041b',
+        page: '#2e3d50', // '#0f041b', // #0f041b
+        nav: '#2e3d50', // '#0f041b',
         footer: '#2e3d50'
       }
     }

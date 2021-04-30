@@ -6,18 +6,18 @@ import { HomepageHero } from '~/components/organisms/HomepageHero'
 import { GetServerSideProps, NextPage } from 'next'
 import { withApollo } from '~/components/withApollo'
 import { ssrGetPosts } from '~/generated/page'
-import { POST_PATH } from '~/constants/site'
-import Link from 'next/link'
-import { Anchor } from '~/components/atoms/Anchor'
+// import { POST_PATH } from '~/constants/site'
+// import Link from 'next/link'
+// import { Anchor } from '~/components/atoms/Anchor'
 import { InlineAnchor } from '~/components/atoms/InlineAnchor'
 
 const Home: NextPage<Record<string, unknown>> = () => {
-  const { data } = ssrGetPosts.usePage()
+  // const { data } = ssrGetPosts.usePage()
 
-  const formattedDate = (dateTime: string) => {
-    const d = new Date(dateTime)
-    return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
-  }
+  // const formattedDate = (dateTime: string) => {
+  //   const d = new Date(dateTime)
+  //   return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+  // }
 
   return (
     <BaseTemplate
@@ -46,7 +46,7 @@ const Home: NextPage<Record<string, unknown>> = () => {
                 .
               </p>
 
-              {data.allPost.map((item) => (
+              {/* {data.allPost.map((item) => (
                 <article key={item.slug.current} className='mb-10'>
                   <Link href={`${POST_PATH}/${item.slug.current}`}>
                     <Anchor href={`${POST_PATH}/${item.slug.current}`}>
@@ -64,7 +64,7 @@ const Home: NextPage<Record<string, unknown>> = () => {
 
                   <p className='text-body text-gray-500'>{item.summary}</p>
                 </article>
-              ))}
+              ))} */}
             </>
           }
         />

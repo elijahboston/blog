@@ -17,7 +17,7 @@ export const PostNav: React.FC<PostNavProps> = (props) => {
         <a>
           <div className='flex items-center border border-transparent rounded-full'>
             <SliceCube slices={5} size={2} distanceBetweenSlices={0.5} />
-            <h2 className='transition-colors text-h2 justify-start ml-5 text-gray-700 group-hover:text-white'>
+            <h2 className='transition-colors text-h2 justify-start ml-5 text-gray-300 group-hover:text-white'>
               elijah boston
             </h2>
           </div>

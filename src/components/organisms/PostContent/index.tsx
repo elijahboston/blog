@@ -3,8 +3,7 @@ import theme from 'react-syntax-highlighter/dist/cjs/styles/prism/xonokai'
 import BlockContent from '@sanity/block-content-to-react'
 import dynamic from 'next/dynamic'
 import { SyntaxHighlighterProps } from 'react-syntax-highlighter'
-import { NONAME } from 'dns'
-import React from 'react'
+import { createElement } from 'react'
 
 const PrismHightlight = dynamic<SyntaxHighlighterProps>(() =>
   import('react-syntax-highlighter').then((mod) => mod.PrismAsyncLight)
@@ -31,14 +30,14 @@ export const PostContent: React.FC<PostContentProps> = ({ bodyRaw }) => {
 
             switch (props.node.style) {
               case /^h\d/.test(style):
-                return React.createElement(
+                return createElement(
                   style,
                   { className: `text-${level}` },
                   props.children
                 )
               case 'normal':
                 return (
-                  <p className='font-body text-body text-bodyTextColor my-4'>
+                  <p className='font-body text-md text-bodyTextColor my-4'>
                     {props.children}
                   </p>
                 )

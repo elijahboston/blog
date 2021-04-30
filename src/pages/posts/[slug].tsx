@@ -9,6 +9,7 @@ import { PageGetPostComp, ssrGetPost } from '~/generated/page'
 import { withApollo } from '~/components/withApollo'
 import Error from 'next/error'
 import { PostNav } from '~/components/organisms/PostNav'
+import { PageTitle } from '~/components/atoms/PageTitle'
 
 SyntaxHighlighter.registerLanguage('javascript', js)
 
@@ -26,10 +27,7 @@ const PostPage: PageGetPostComp = ({ data, error }) => {
         <PostTemplate
           Content={
             <>
-              <h1 className='my-10 text-hero text-bodyTextColor gradient-text bg-clip-text'>
-                {post.title}
-              </h1>
-              {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
+              <PageTitle>{post.title}</PageTitle>
               <PostContent bodyRaw={post.bodyRaw} />
             </>
           }

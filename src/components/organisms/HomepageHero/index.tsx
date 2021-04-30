@@ -19,18 +19,17 @@ export const HomepageHero: React.FC<{}> = () => {
           className={clsx([
             'font-display',
             'font-bold',
-            'text-2xl',
+            'text-xl',
             'font-thin',
             'cursor-pointer',
-            'text-white',
-            'text-3xl'
+            'text-white'
           ])}
         >
           {SITE_DATA.siteTitle}
         </h1>
       </Anchor>
 
-      <h2 className='text-gray-600 text-2xl'>{SITE_DATA.tagline}</h2>
+      <h2 className='text-gray-600 text-md'>{SITE_DATA.tagline}</h2>
     </header>
   )
 }
