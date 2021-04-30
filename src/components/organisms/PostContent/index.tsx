@@ -37,7 +37,7 @@ export const PostContent: React.FC<PostContentProps> = ({ bodyRaw }) => {
                 )
               case 'normal':
                 return (
-                  <p className='font-body text-md text-bodyTextColor my-4'>
+                  <p className='font-body text-md text-primary my-4'>
                     {props.children}
                   </p>
                 )

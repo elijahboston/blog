@@ -18,7 +18,7 @@ export const NavAnchor: React.FC<NavAnchorProps> = (props) => (
     )}
   >
     {props.icon && <span className='self-start'>{props.icon}</span>}
-    <span className={props.icon ? 'pl-4 self-center' : 'text-bodyTextColor'}>
+    <span className={props.icon ? 'pl-4 self-center' : 'text-primary'}>
       {props.children}
     </span>
   </a>

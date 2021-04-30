@@ -10,6 +10,8 @@ import { POST_PATH } from '~/constants/site'
 import Link from 'next/link'
 import { Anchor } from '~/components/atoms/Anchor'
 import { InlineAnchor } from '~/components/atoms/InlineAnchor'
+import { ListedPostTitle } from '~/components/atoms/ListedPostTitle'
+import { PageTitle } from '~/components/atoms/PageTitle'
 
 const Home: NextPage<Record<string, unknown>> = () => {
   const { data } = ssrGetPosts.usePage()
@@ -26,11 +28,11 @@ const Home: NextPage<Record<string, unknown>> = () => {
         <HomepageTemplate
           Content={
             <>
-              <p className='text-body text-center text-bodyTextColor my-10'>
+              <p className='text-body text-center text-primary my-10'>
                 {SITE_DATA.aboutMe}
               </p>
 
-              <p className='text-body text-center text-bodyTextColor my-10'>
+              <p className='text-body text-center text-primary my-10'>
                 You can find me on{' '}
                 <InlineAnchor href={SITE_DATA.contactInfo.linkedIn}>
                   LinkedIn
@@ -45,14 +47,12 @@ const Home: NextPage<Record<string, unknown>> = () => {
                 </InlineAnchor>
                 .
               </p>
-
+              <PageTitle>Posts</PageTitle>
               {data.allPost.map((item) => (
                 <article key={item.slug.current} className='mb-10'>
                   <Link href={`${POST_PATH}/${item.slug.current}`}>
                     <Anchor href={`${POST_PATH}/${item.slug.current}`}>
-                      <h2 className='text-h2 gradient-text bg-clip-text'>
-                        {item.title}
-                      </h2>
+                      <ListedPostTitle>{item.title}</ListedPostTitle>
                     </Anchor>
                   </Link>
                   <div className='text-xs my-2 text-gray-500'>
@@ -61,8 +61,6 @@ const Home: NextPage<Record<string, unknown>> = () => {
                       {formattedDate(item.publishedAt)}
                     </time>
                   </div>
-
-                  <p className='text-body text-gray-500'>{item.summary}</p>
                 </article>
               ))}
             </>

@@ -9,7 +9,7 @@ export const InlineAnchor: React.FC<AnchorProps> = ({
   <Anchor
     {...other}
     className={clsx(
-      'anchor-inline gradient-border border-t-0 border-r-0 border-l-0 hover:text-gray-500',
+      'border-b-2 border-secondary text-secondary hover:text-gray-500',
       className
     )}
   >

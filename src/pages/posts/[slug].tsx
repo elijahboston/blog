@@ -22,7 +22,7 @@ const PostPage: PageGetPostComp = ({ data, error }) => {
 
   return (
     <BaseTemplate
-      Nav={<PostNav />}
+      StickyNav={<PostNav />}
       Content={
         <PostTemplate
           Content={
