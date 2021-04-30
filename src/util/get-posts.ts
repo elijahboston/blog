@@ -13,7 +13,7 @@ export const getPosts = () => {
         .slice(0, -1)
         .join('.')
 
-      const value = values[index] as {default: any}
+      const value = values[index] as { default: any }
 
       const document = matter(value.default)
       return {

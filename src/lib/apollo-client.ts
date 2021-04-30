@@ -1,31 +1,31 @@
-import { useMemo } from "react"
+import { useMemo } from 'react'
 import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
-  NormalizedCacheObject,
-} from "@apollo/client"
-import { concatPagination } from "@apollo/client/utilities"
-import { SANITY_ENDPOINT } from "~/constants/api"
+  NormalizedCacheObject
+} from '@apollo/client'
+import { concatPagination } from '@apollo/client/utilities'
+import { SANITY_ENDPOINT } from '~/constants/api'
 
 let apolloClient
 
 function createApolloClient() {
   return new ApolloClient({
-    ssrMode: typeof window === "undefined",
+    ssrMode: typeof window === 'undefined',
     link: new HttpLink({
       uri: SANITY_ENDPOINT, // Server URL (must be absolute)
-      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+      credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
           fields: {
-            allPost: concatPagination(),
-          },
-        },
-      },
-    }),
+            allPost: concatPagination()
+          }
+        }
+      }
+    })
   })
 }
 
@@ -43,7 +43,7 @@ export function initializeApollo(initialState = null) {
   }
 
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === "undefined") return _apolloClient
+  if (typeof window === 'undefined') return _apolloClient
   // Create the Apollo Client once in the client
   if (!apolloClient) apolloClient = _apolloClient
 

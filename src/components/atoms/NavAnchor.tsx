@@ -1,4 +1,4 @@
-import clsx from "classnames"
+import clsx from 'classnames'
 
 export interface NavAnchorProps {
   icon?: React.ReactNode
@@ -9,11 +9,11 @@ export interface NavAnchorProps {
 export const NavAnchor: React.FC<NavAnchorProps> = (props) => (
   <a
     href={props.href}
-    className={clsx("primary-anchor", {
-      "primary-anchor-active": props.active,
+    className={clsx('primary-anchor', {
+      'primary-anchor-active': props.active
     })}
   >
-    {props.icon && <span className="self-start">{props.icon}</span>}
-    <span className={props.icon ? "pl-4" : ""}>{props.children}</span>
+    {props.icon && <span className='self-start'>{props.icon}</span>}
+    <span className={props.icon ? 'pl-4' : ''}>{props.children}</span>
   </a>
 )

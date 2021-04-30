@@ -1,8 +1,8 @@
-import {Header} from 'components/common/header'
-import {Anchor} from 'components/kit/anchor'
-import {SITE_TITLE} from 'constants/site'
-import Head from 'next/head'
-import React from 'react'
+import { Header } from "components/common/header"
+import { Anchor } from "components/kit/anchor"
+import { SITE_TITLE } from "constants/site"
+import Head from "next/head"
+import React from "react"
 
 export interface LayoutProps {
   nav?: React.ReactNode
@@ -11,7 +11,7 @@ export interface LayoutProps {
 
 export const LayoutBase: React.FC<LayoutProps> = (props) => (
   <main>
-    <div className="md-pt-24">
+    <div className="md-pt-24 md-pb-12">
       <Head>
         <title>{SITE_TITLE}</title>
         <link rel="icon" href="/favicon.ico" />

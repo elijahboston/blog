@@ -1,0 +1,6 @@
+.next
+package-lock.json
+node_modules
+dist
+src/codegen/*-schema.json
+src/codegen/*.ts

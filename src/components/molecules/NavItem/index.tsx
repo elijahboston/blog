@@ -1,4 +1,4 @@
-import { NavAnchor } from "../../../components/atoms/NavAnchor"
+import { NavAnchor } from '../../../components/atoms/NavAnchor'
 
 export interface NavItemProps {
   rootPath: string
@@ -11,7 +11,7 @@ export const NavItem: React.FC<NavItemProps> = ({ rootPath, path, label }) => {
       <NavAnchor
         active={Boolean(`/${rootPath}` === path)}
         href={path}
-        className="text-white m-2"
+        className='text-white m-2'
       >
         {label}
       </NavAnchor>

@@ -1,6 +1,6 @@
-import { useMemo, useRef, useState } from "react"
-import { Canvas, useFrame } from "react-three-fiber"
-import { Mesh } from "three"
+import { useMemo, useRef, useState } from 'react'
+import { Canvas, useFrame } from 'react-three-fiber'
+import { Mesh } from 'three'
 
 const Box: React.FC<{ position: [number, number, number] }> = (props) => {
   // This reference will give us direct access to the mesh
@@ -23,10 +23,10 @@ const Box: React.FC<{ position: [number, number, number] }> = (props) => {
       onPointerOver={() => setHover(true)}
       onPointerOut={() => setHover(false)}
     >
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
+      <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
       <meshStandardMaterial
-        attach="material"
-        color={hovered ? "#676767" : "white"}
+        attach='material'
+        color={hovered ? '#676767' : 'white'}
       />
     </mesh>
   )
