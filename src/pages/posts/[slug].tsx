@@ -1,82 +1,42 @@
-import {GetServerSidePropsContext, NextPage} from 'next'
-import {useRouter} from 'next/dist/client/router'
-import React from 'react'
-import {LayoutPost} from 'components/layouts/layout-post'
-import {initializeApollo} from 'lib/apollo-client'
-import {usePostQuery} from 'hooks/use-post'
-import {getQueryParameter} from 'util/get-query-param'
-import {GET_POST} from 'queries/get-post'
-import BlockContent from '@sanity/block-content-to-react'
-import {SANITY_PROJECT_ID, SANITY_DATASET} from 'constants/api'
+import { useRouter } from "next/dist/client/router"
+import { initializeApollo } from "~/lib/apollo-client"
+import { usePostQuery } from "~/hooks/use-post"
+import { getQueryParameter } from "~/util/get-query-param"
+import { GET_POST } from "~/queries/get-post"
+import { LightAsync as SyntaxHighlighter } from "react-syntax-highlighter"
+import js from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript"
+import { PostContent } from "~/components/organisms/PostContent"
+import { BaseTemplate } from "~/components/templates/BaseTemplate"
+import { Footer } from "~/components/organisms/Footer"
+import { PostTemplate } from "~/components/templates/PostTemplate"
+import { StickyNav } from "~/components/organisms/StickyNav"
+import { GetServerSidePropsContext, NextPage } from "next"
 
-import {LightAsync as SyntaxHighlighter} from 'react-syntax-highlighter'
-import js from 'react-syntax-highlighter/dist/cjs/languages/hljs/javascript'
-import monokaiSublime from 'react-syntax-highlighter/dist/cjs/styles/hljs/monokai-sublime'
-
-SyntaxHighlighter.registerLanguage('javascript', js)
+SyntaxHighlighter.registerLanguage("javascript", js)
 
 const PostPage: NextPage<Record<string, unknown>> = () => {
-  const {query} = useRouter()
-  const {slug} = query
+  const { query } = useRouter()
+  const { slug } = query
 
-  const {data} = usePostQuery({slug: getQueryParameter(slug)})
+  const { data } = usePostQuery({ slug: getQueryParameter(slug) })
   const post = data.allPost[0]
 
   return (
-    <LayoutPost>
-      <h1 className="font-display">{post.title}</h1>
-      {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
-      <BlockContent
-        blocks={post.bodyRaw}
-        projectId={SANITY_PROJECT_ID}
-        dataset={SANITY_DATASET}
-        serializers={{
-          marks: {
-            code: (props) => (
-              <code className="bg-white text-black p-1">{props.children}</code>
-            )
-          },
-          types: {
-            block: (props) => {
-              switch (props.node.style) {
-                case 'normal':
-                  return (
-                    <p className="font-body text-base my-4">{props.children}</p>
-                  )
-                default:
-                  return BlockContent.defaultSerializers.types.block(props)
-              }
-            },
-            codeSnippet: (props) => {
-              return (
-                <SyntaxHighlighter
-                  language="javascript"
-                  style={monokaiSublime}
-                  customStyle={{
-                    padding: '1rem'
-                  }}
-                  codeTagProps={{
-                    className: 'text-sm'
-                  }}
-                >
-                  {props.node.snippet.code}
-                </SyntaxHighlighter>
-              )
-            }
-          },
-          list: (props) => {
-            return (
-              <ul className="list-disc list-inside m-4 font-body">
-                {props.children}
-              </ul>
-            )
-          },
-          listItem: (props) => {
-            return BlockContent.defaultSerializers.listItem(props)
+    <BaseTemplate
+      StickyNav={<StickyNav />}
+      Content={
+        <PostTemplate
+          Content={
+            <>
+              <h1 className="font-display">{post.title}</h1>
+              {/* {post.author && <div className="py-6">By {post.author.name}</div>} */}
+              <PostContent bodyRaw={post.bodyRaw} />
+            </>
           }
-        }}
-      />
-    </LayoutPost>
+        />
+      }
+      Footer={<Footer />}
+    />
   )
 }
 
@@ -84,13 +44,13 @@ export default PostPage
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   const apolloClient = initializeApollo()
-  const {slug} = ctx.query
+  const { slug } = ctx.query
 
-  const {data, error} = await apolloClient.query({
+  const { data, error } = await apolloClient.query({
     query: GET_POST,
     variables: {
-      slug: getQueryParameter(slug)
-    }
+      slug: getQueryParameter(slug),
+    },
   })
 
   if (!data || error) {
@@ -100,8 +60,8 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 
   return {
     props: {
-      initialApolloState: apolloClient.cache.extract()
-    }
+      initialApolloState: apolloClient.cache.extract(),
+    },
     // Revalidate: 1,
   }
 }

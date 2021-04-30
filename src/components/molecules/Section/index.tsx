@@ -1,6 +1,6 @@
-import {BaseComponentProps} from 'types/shared'
+import React from "react"
 
-export interface SectionProps extends BaseComponentProps {
+export interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string
 }
 

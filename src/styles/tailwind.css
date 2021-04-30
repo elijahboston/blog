@@ -1,58 +1,6 @@
-@import "tailwindcss/base";
-h1 {
-  @apply text-5xl;
-  letter-spacing: 0.08rem;
-  line-height: 3.6rem;
-}
-h2 {
-  @apply text-4xl;
-}
-h3 {
-  @apply text-3xl;
-}
-h4 {
-  @apply text-2xl;
-}
-h5 {
-  @apply text-xl;
-}
-h1,
-h2,
-h3,
-h4,
-h5 {
-  @apply font-display;
-  @apply font-bold;
-}
-p {
-  @apply font-body;
-  padding: 16px 0;
-  line-height: 1.6rem;
-  letter-spacing: 0.05rem;
-}
-/* a {
-  @apply text-blue-400;
-  @apply underline;
-}
-a:hover {
-  @apply text-blue-600;
-} */
-html {
-  @apply text-2xl;
-}
-body {
-  font-family: "Source Sans Pro", "sans-serif";
-  height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: "100vh";
-  color: #fff;
-}
-
-#__next,
-main,
-main > div {
-  height: 100%;
-}
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+@tailwind screens;

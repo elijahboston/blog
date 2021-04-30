@@ -1,12 +1,12 @@
-const SpriteLoaderPlugin = require("svg-sprite-loader/plugin")
+// const SpriteLoaderPlugin = require("svg-sprite-loader/plugin")
 
 module.exports = {
   webpack: function (config, { webpack }) {
     const rules = [
-      {
-        test: /\.svg$/,
-        use: ["svg-sprite-loader", "svgo-loader"],
-      },
+      // {
+      //   test: /\.svg$/,
+      //   use: ["svg-sprite-loader", "svgo-loader"],
+      // },
       {
         test: /\.md$/,
         use: "raw-loader",
@@ -15,7 +15,7 @@ module.exports = {
     config.module.rules.push(...rules)
 
     const plugins = [
-      new SpriteLoaderPlugin(),
+      // new SpriteLoaderPlugin(),
       new webpack.ProvidePlugin({
         clsx: "classnames",
       }),

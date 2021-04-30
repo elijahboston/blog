@@ -1,11 +1,9 @@
-import React from 'react'
-
 export interface CubeProps {
-  size?: 'lg' | 'sm' | 'xs'
+  size?: "lg" | "sm" | "xs"
 }
-export const Cube: React.FC<CubeProps> = ({size}) => {
+export const Cube: React.FC<CubeProps> = ({ size }) => {
   return (
-    <div className={`cube-container text-${size || 'lg'}`} aria-hidden="true">
+    <div className={`cube-container text-${size || "lg"}`} aria-hidden="true">
       <div className="cube-scene">
         <div className="cube">
           <div className="cube__face border border-secondary cube__face--front" />
