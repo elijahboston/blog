@@ -1,8 +1,7 @@
-import { Header } from "components/common/header"
-import { Anchor } from "components/kit/anchor"
-import { SITE_TITLE } from "constants/site"
+import { SITE_TITLE } from "~/constants/site"
 import Head from "next/head"
-import React from "react"
+import { Header } from "~/components/organisms/Header"
+import { Anchor } from "~/components/atoms/Anchor"
 
 export interface LayoutProps {
   nav?: React.ReactNode

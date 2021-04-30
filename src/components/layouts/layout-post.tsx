@@ -1,5 +1,4 @@
-import { LayoutBase, LayoutProps } from 'components/layouts/layout-base'
-import React from 'react'
+import { LayoutBase, LayoutProps } from '~/components/layouts/layout-base'
 
 export const LayoutPost: React.FC<LayoutProps> = (props) => (
   <LayoutBase compact>

@@ -1,7 +1,7 @@
 import '~/styles/tailwind.css'
 import '~/styles/fonts.css'
 import '~/styles/cube.css'
-import { useApollo } from '~/lib/apollo-client'
+import { useApollo } from '~/components/lib/apollo-client'
 import { ApolloProvider } from '@apollo/client'
 
 const App = ({ Component, pageProps }) => {

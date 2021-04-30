@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import { initializeApollo } from '~/lib/apollo-client'
+import { initializeApollo } from '~/components/lib/apollo-client'
 import { usePostsQuery } from '~/hooks/use-posts'
 import { POST_PATH } from '~/constants/site'
 import { GET_POSTS } from '~/queries/get-posts'

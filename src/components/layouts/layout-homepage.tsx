@@ -1,5 +1,4 @@
 import { LayoutBase, LayoutProps } from './layout-base'
-import React from 'react'
 
 export const LayoutHomepage: React.FC<LayoutProps> = (props) => (
   <LayoutBase compact={false}>

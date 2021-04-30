@@ -1,5 +1,5 @@
 import { useRouter } from 'next/dist/client/router'
-import { initializeApollo } from '~/lib/apollo-client'
+import { initializeApollo } from '~/components/lib/apollo-client'
 import { usePostQuery } from '~/hooks/use-post'
 import { getQueryParameter } from '~/util/get-query-param'
 import { GET_POST } from '~/queries/get-post'
