@@ -6,7 +6,7 @@ export const SITE_DATA = {
   contactInfo: {
     codeSandbox: 'https://codesandbox.io/u/elijahboston',
     github: 'http://www.github.com/elijahboston',
-    linkedIn: 'http://www.linkedin.com/elijahboston',
+    linkedIn: 'https://www.linkedin.com/in/elijah-boston-3725582b/',
     twitter: 'http://www.twitter.com/elijahboston'
   }
 }
