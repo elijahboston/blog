@@ -92,7 +92,6 @@ export const SliceCube: React.FC<{
                 key={`slice-${index}`}
                 className={`slice slice-${index}`}
                 style={{
-                  background: 'rgba(131,58,180,.1)',
                   border: '1px solid rgba(255,255,255,.2)',
                   position: 'absolute',
                   width: '100%',
