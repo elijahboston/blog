@@ -12,6 +12,7 @@ import { Anchor } from '~/components/atoms/Anchor'
 import { InlineAnchor } from '~/components/atoms/InlineAnchor'
 import { ListedPostTitle } from '~/components/atoms/ListedPostTitle'
 import { PageTitle } from '~/components/atoms/PageTitle'
+import { Nav } from '~/components/organisms/Nav'
 
 const Home: NextPage<Record<string, unknown>> = () => {
   const { data } = ssrGetPosts.usePage()
@@ -23,6 +24,7 @@ const Home: NextPage<Record<string, unknown>> = () => {
 
   return (
     <BaseTemplate
+      StickyNav={<Nav />}
       Header={<HomepageHero />}
       Content={
         <HomepageTemplate

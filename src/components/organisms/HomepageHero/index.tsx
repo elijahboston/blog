@@ -14,7 +14,7 @@ export const HomepageHero: React.FC<{}> = () => {
         </Link>
       </div>
 
-      <Anchor href='/'>
+      {/* <Anchor href='/'>
         <h1
           className={clsx([
             'font-display',
@@ -27,9 +27,9 @@ export const HomepageHero: React.FC<{}> = () => {
         >
           {SITE_DATA.siteTitle}
         </h1>
-      </Anchor>
+      </Anchor> */}
 
-      <h2 className='text-gray-600 text-md'>{SITE_DATA.tagline}</h2>
+      {/* <h2 className='text-gray-600 text-md'>{SITE_DATA.tagline}</h2> */}
     </header>
   )
 }

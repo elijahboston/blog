@@ -8,7 +8,7 @@ import { GetServerSideProps } from 'next'
 import { PageGetPostComp, ssrGetPost } from '~/generated/page'
 import { withApollo } from '~/components/withApollo'
 import Error from 'next/error'
-import { PostNav } from '~/components/organisms/PostNav'
+import { Nav } from '~/components/organisms/Nav'
 import { PageTitle } from '~/components/atoms/PageTitle'
 
 SyntaxHighlighter.registerLanguage('javascript', js)
@@ -22,7 +22,7 @@ const PostPage: PageGetPostComp = ({ data, error }) => {
 
   return (
     <BaseTemplate
-      StickyNav={<PostNav />}
+      StickyNav={<Nav />}
       Content={
         <PostTemplate
           Content={
