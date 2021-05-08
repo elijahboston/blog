@@ -30,7 +30,7 @@ const Home: NextPage<Record<string, unknown>> = () => {
         <HomepageTemplate
           Content={
             <>
-              <p className='text-body text-center text-primary my-10'>
+              <p className='text-body text-center text-primary my-10 mt-0'>
                 {SITE_DATA.aboutMe}
               </p>
 

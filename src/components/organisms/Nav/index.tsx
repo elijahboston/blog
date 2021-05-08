@@ -36,7 +36,7 @@ export const Nav: React.FC<NavProps> = (props) => {
     >
       <Link href='/'>
         <a>
-          <h2 className='transition-colors text-lg font-display justify-start ml-5 text-primary group-hover:text-secondary'>
+          <h2 className='transition-colors text-lg font-display justify-start xs:ml-5 text-primary group-hover:text-secondary'>
             elijah boston
           </h2>
         </a>
