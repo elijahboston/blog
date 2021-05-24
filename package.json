@@ -14,7 +14,8 @@
     "format": "prettier --list-different '**/*.{js,jsx,ts,tsx,json,htm,html,yml,yaml}'",
     "format:fix": "prettier --write '**/*.{js,jsx,ts,tsx,json,htm,html,yml,yaml}'",
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@apollo/client": "~3.3.6",
