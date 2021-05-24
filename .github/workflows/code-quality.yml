@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - run: npm ci
-      - run: npm run lint
+      - run: yarn ci
+      - run: yarn run lint
   typecheck:
     name: Typecheck
     runs-on: ubuntu-latest
@@ -24,5 +24,5 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-      - run: npm ci
-      - run: npm run typecheck
+      - run: yarn ci
+      - run: yarn run typecheck
