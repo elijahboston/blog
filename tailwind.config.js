@@ -2,8 +2,8 @@ const theme = require('./tailwind.theme').theme
 
 module.exports = {
   future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+    purgeLayersByDefault: true
   },
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   variants: {
@@ -11,11 +11,6 @@ module.exports = {
     borderColor: ['group-hover'],
     textColor: ['group-hover']
   },
-  plugins: [
-    require('./tailwind-custom-plugins/anchors'),
-    require('./tailwind-custom-plugins/typography'),
-    require('./tailwind-custom-plugins/gradients'),
-    require('./tailwind-custom-plugins/post-nav')
-  ],
+  plugins: [require('./tailwind-custom-plugins/base')],
   theme
 }

@@ -16,7 +16,7 @@ export const BaseTemplate: React.FC<{
       </nav>
     )}
     <div className='BaseTemplate grid grid-cols-12'>
-      <div className='col-span-10 col-start-2 md:col-span-8 md:col-start-3 lg:col-span-8 lg:col-start-3'>
+      <div className='col-span-10 col-start-2 md:col-span-8 md:col-start-3 lg:col-span-4 lg:col-start-5'>
         {Header && <div className='header'>{Header}</div>}
         {Nav && <div className='nav'>{Nav}</div>}
         <div className='content pb-40'>{Content}</div>

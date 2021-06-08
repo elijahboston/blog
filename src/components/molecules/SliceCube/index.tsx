@@ -13,10 +13,43 @@ interface SliceFace {
   translate?: Coordinates
 }
 
-const SIZE_REM = 10
+const SIZE_REM = 15
 const SLICES = 10
 const DISTANCE_BETWEEN_SLICES = 1.2
-const ROTATE = -20
+
+const randColor = () => Math.floor(Math.random() * 255)
+const randomRgb = () => `rgb(${randColor()},${randColor()},${randColor()})`
+
+const animateSlices = () => {
+  anime({
+    targets: '.slice',
+    // keyframes: [{ rotateZ: 0 }, { rotateZ: 90 }],
+    delay: anime.stagger([500, 200, 700]),
+    rotate: anime.stagger([-360, 360]),
+    // loop: true,
+    easing: 'easeInOutSine',
+    duration: 1400
+    // loopComplete: animateSlices
+  })
+}
+
+const animateNucleus = () => {
+  anime({
+    targets: '.nucleus',
+    keyframes: [
+      { rotateX: 35, rotateY: 35 },
+      // { rotateX: 90, rotateY: 90 },
+      { rotateX: 180, rotateY: 180 },
+      { rotateX: 35, rotateY: 35 }
+    ],
+    delay: anime.stagger([100, 500, 800]),
+    rotate: anime.stagger([-360, 360]),
+    duration: 2000,
+    loop: true,
+    easing: 'easeInSine'
+    // loopComplete: animateNucleus
+  })
+}
 
 export const SliceCube: React.FC<{
   size?: number
@@ -27,36 +60,9 @@ export const SliceCube: React.FC<{
   slices = SLICES,
   distanceBetweenSlices = DISTANCE_BETWEEN_SLICES
 }) => {
-  const getTransform = (face: SliceFace) => {
-    const css = [
-      Object.keys(face.rotate).map(
-        (axis) => `rotate${axis.toUpperCase()}(${face.rotate[axis]}deg)`
-      ),
-      Object.keys(face.translate).map(
-        (axis) => `translate${axis.toUpperCase()}(${face.translate[axis]}rem)`
-      )
-    ]
-
-    return { transform: css.join(' ') }
-  }
-
   useEffect(() => {
-    anime({
-      targets: '.cube',
-      keyframes: [
-        { rotateX: 0, rotateY: 0 },
-        { rotateX: ROTATE, rotateY: ROTATE }
-      ],
-      delay: anime.stagger(100),
-      easing: 'easeInOutQuad'
-    })
-    anime({
-      targets: '.slice',
-      keyframes: [{ scale: 1 }, { scale: 1.05 }, { scale: 1 }],
-      delay: anime.stagger(100),
-      loop: true,
-      easing: 'easeInOutQuad'
-    })
+    animateSlices()
+    animateNucleus()
   }, [])
 
   return (
@@ -80,25 +86,37 @@ export const SliceCube: React.FC<{
             transition: 'transform 1s'
           }}
         >
-          {_range(0, slices)
+          {_range(0, SLICES)
             // Generate slice properties
             .map((n: number) => ({
               rotate: { y: 0 },
-              translate: { z: distanceBetweenSlices * n * -1 }
+              translate: { z: -6 + distanceBetweenSlices * n * -1 }
             }))
             // Render slice
             .map((face: SliceFace, index) => (
               <div
                 key={`slice-${index}`}
-                className={`slice slice-${index}`}
+                className={`slice slice-${index} relative z-0 rounded-md`}
                 style={{
-                  border: '1px solid rgb(255 150 125)', // '1px solid rgba(255,255,255)',
+                  border: `1px solid ${randomRgb()}`, // '1px solid rgba(255,255,255)',
                   position: 'absolute',
                   width: '100%',
                   height: '100%',
-                  ...getTransform(face)
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
                 }}
-              />
+              >
+                <div
+                  className='nucleus rounded-full'
+                  style={{
+                    transform: 'rotateX(35deg) rotateY(35deg)',
+                    border: `1px solid ${randomRgb()}`,
+                    width: '8rem',
+                    height: '8rem'
+                  }}
+                />
+              </div>
             ))}
         </div>
       </div>
