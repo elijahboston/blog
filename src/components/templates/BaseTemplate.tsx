@@ -21,7 +21,7 @@ export const BaseTemplate: React.FC<{
         {Nav && <div className='nav'>{Nav}</div>}
         <div className='content pb-40'>{Content}</div>
       </div>
-      {/* <div className='footer col-span-12'>{Footer}</div> */}
+      <div className='footer col-span-12'>{Footer}</div>
     </div>
   </>
 )
