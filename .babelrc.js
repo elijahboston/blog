@@ -18,8 +18,7 @@ module.exports = (api) => {
           }
         }
       ],
-      'babel-plugin-macros',
-      ['styled-components', { ssr: true }]
+      'babel-plugin-macros'
     ]
   }
 }
