@@ -12,8 +12,8 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
   title,
   subtitle
 }) => (
-  <header className='relative flex flex-col justify-center items-center my-10 mb-0'>
-    <div className='my-20 relative z-10' style={{ height: '400px' }}>
+  <header className='flex flex-col justify-center items-center md:my-10 md:mb-0'>
+    <div className='w-full' style={{ maxWidth: '400px' }}>
       <KScopeDynamic />
     </div>
     <div id='site-title' className='py-2 text-center'>

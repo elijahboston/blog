@@ -1,5 +1,3 @@
-import { Anchor } from '~/components/atoms/Anchor'
-
 export interface FooterProps {}
 
 export const Footer: React.FC<FooterProps> = (props) => {

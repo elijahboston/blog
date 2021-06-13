@@ -11,11 +11,15 @@ module.exports = (phase, defaultConfig) => {
       // Note: we provide webpack above so you should not `require` it
       // Perform customizations to webpack config
       config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+
+      // Import classnames as `clsx` globally
       config.plugins.push(
         new webpack.ProvidePlugin({
           clsx: 'classnames'
         })
       )
+
+      // SVG Loader
       config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack', 'url-loader']

@@ -2,7 +2,7 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(function ({ addBase, theme }) {
   const baseFontStyles = {
-    color: theme('colors.gray.500')
+    color: theme('colors.gray.200')
   }
 
   addBase({
