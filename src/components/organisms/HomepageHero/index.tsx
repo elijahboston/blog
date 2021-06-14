@@ -18,7 +18,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
     </div>
     <div id='site-title' className='py-2 text-center'>
       <h1 className='font-display text-gray-300 text-xl'>{title}</h1>
-      <h2 className='font-display text-gray-500 text-md font-bold'>
+      <h2 className='font-display text-gray-400 text-md font-bold'>
         {subtitle}
       </h2>
     </div>
