@@ -1,0 +1,6 @@
+.next
+yarn-lock.json
+node_modules
+dist
+src/codegen/*-schema.json
+src/codegen/*.ts

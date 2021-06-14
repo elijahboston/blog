@@ -1,49 +1,41 @@
-import {NextPage} from 'next'
-import {LayoutHomepage} from 'components/layouts/layout-homepage'
-import {Section} from 'components/common/section'
-import SvgGithub from 'components/icons/github'
-import SvgLinkedin from 'components/icons/linkedin'
-import React from 'react'
-import {PrimaryAnchor, PrimaryAnchorProps} from 'components/kit/primary-anchor'
-import {SITE_DATA} from 'data/site'
-import SvgTwitter from 'components/icons/twitter'
+import { BaseTemplate } from '~/components/templates/BaseTemplate'
+import { Footer } from '~/components/organisms/Footer'
+import { HomepageTemplate } from '~/components/templates/HomepageTemplate'
+import { HomepageHero } from '~/components/organisms/HomepageHero'
+import { GetServerSideProps, NextPage } from 'next'
+import { ssrGetHome, useGetHome } from '~/generated/page'
+import { withApollo } from '~/components/withApollo'
+import BlockContent from '@sanity/block-content-to-react'
+import { SANITY_DATASET, SANITY_PROJECT_ID } from '~/constants/api'
 
-const ContactLink: React.FC<PrimaryAnchorProps> = (props) => (
-  <PrimaryAnchor className="border-gray-600 m-2" {...props} />
-)
+const Home: NextPage<Record<string, unknown>> = () => {
+  const { data } = useGetHome()
+  const pageData = data.allHomepage[0]
+  return (
+    <BaseTemplate
+      Header={
+        <HomepageHero title={pageData?.title} subtitle={pageData?.subtitle} />
+      }
+      Content={
+        <HomepageTemplate
+          Content={
+            <div className='my-10'>
+              <BlockContent
+                blocks={pageData?.primaryBlockContentRaw || {}}
+                projectId={SANITY_PROJECT_ID}
+                dataset={SANITY_DATASET}
+              />
+            </div>
+          }
+        />
+      }
+      Footer={<Footer />}
+    />
+  )
+}
 
-const Home: NextPage<Record<string, unknown>> = () => (
-  <LayoutHomepage>
-    <Section title="About Me">
-      <p className="text-center lg:text-left">{SITE_DATA.aboutMe}</p>
-    </Section>
-    <Section title="Contact">
-      <div className="flex flex-wrap justify-center lg:justify-start">
-        <ContactLink
-          icon={<SvgTwitter className="w-10 h-10 fill-current" />}
-          href={SITE_DATA.contactInfo.twitter}
-        >
-          Twitter
-        </ContactLink>
-        <ContactLink
-          icon={<SvgLinkedin className="w-10 h-10 fill-current" />}
-          href={SITE_DATA.contactInfo.linkedIn}
-        >
-          LinkedIn
-        </ContactLink>
-      </div>
-    </Section>
-    <Section title="Code">
-      <div className="flex flex-wrap justify-center lg:justify-start">
-        <ContactLink
-          icon={<SvgGithub className="w-10 h-10 fill-current" />}
-          href={SITE_DATA.contactInfo.github}
-        >
-          GitHub
-        </ContactLink>
-      </div>
-    </Section>
-  </LayoutHomepage>
-)
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return await ssrGetHome.getServerPage({}, ctx)
+}
 
-export default Home
+export default withApollo(ssrGetHome.withPage(() => ({}))(Home))

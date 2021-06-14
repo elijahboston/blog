@@ -1,16 +1,7 @@
-import 'styles/tailwind.css'
-import 'styles/fonts.css'
-import 'styles/cube.css'
-import {useApollo} from 'lib/apollo-client'
-import {ApolloProvider} from '@apollo/client'
+import '~/styles/globals.css'
 
-const App = ({Component, pageProps}) => {
-  const apolloClient = useApollo(pageProps.initialApolloState)
-  return (
-    <ApolloProvider client={apolloClient}>
-      <Component {...pageProps} />
-    </ApolloProvider>
-  )
+const App = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />
 }
 
 export default App
