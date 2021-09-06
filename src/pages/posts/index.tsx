@@ -2,13 +2,10 @@ import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { HomepageTemplate } from '~/components/templates/HomepageTemplate'
 import { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
-
-import markdownToHtml from '~/util/markdownToHtml'
 import { getAllPosts } from '~/util/getAllPosts'
-import { getContentBySlug } from '~/util/getContentBySlug'
-import { PostMarkdown, MarkdownRaw } from '~/util/getMarkdownBySlug'
+import { MarkdownRaw, PostMarkdown } from '~/util/getMarkdownBySlug'
 
-const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
+const Posts: NextPage<{ posts: PostMarkdown[]; aboutMe: MarkdownRaw }> = ({
   posts,
   aboutMe
 }) => {
@@ -16,10 +13,9 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
     <BaseTemplate
       Content={
         <HomepageTemplate
-          TopContent={<p dangerouslySetInnerHTML={{ __html: aboutMe }} />}
           Content={
             <div className='my-10'>
-              <h2>Posts</h2>
+              <h1>Posts</h1>
               {posts.map((post) => (
                 <h2 key={post.slug}>
                   <Link href={`/posts/${post?.slug}`}>
@@ -36,19 +32,13 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const [posts, aboutMe] = await Promise.all([
-    getAllPosts(['title', 'date', 'slug']),
-    getContentBySlug('about-me', ['content']).then((md) =>
-      markdownToHtml(md.content)
-    )
-  ])
+  const posts = await getAllPosts(['title', 'date', 'slug'])
 
   return {
     props: {
-      posts,
-      aboutMe
+      posts
     }
   }
 }
 
-export default Home
+export default Posts

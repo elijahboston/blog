@@ -1,5 +1,35 @@
 /* purgecss start ignore */
 @tailwind base;
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-textPrimary;
+  }
+  h1 {
+    @apply text-xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+
+  a {
+    @apply border-b border-transparent text-secondary no-underline;
+  }
+
+  a:hover {
+    @apply border-b border-secondary;
+  }
+
+  p {
+    @apply text-md font-display text-textSecondary py-4;
+  }
+}
+
 @tailwind components;
 
 /* Prevent zoom on iOS devices */
