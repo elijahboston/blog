@@ -321,19 +321,19 @@ aws ecs create-service \
 
 Now if we log into the AWS ECS dashboard and open up our cluster, we should see two running services:
 
-![Grid Console](../images/posts/Amazon_ECS.png)
+![Grid Console](/images/Amazon_ECS.png)
 
 Next we want to confirm the hub is running and our Chrome instances have been added. Normally you'd setup a load balancer and access the hub that way, but since we didn't set one up for the sake of simplicity, we'll just use the hub's private IP (or public if you went that route).
 
 Click the 'hub' task, then the 'Task' tab, and select our Hub task's ID:
 
-![Grid Console](../images/posts/Amazon_ECS-2.png)
+![Grid Console](/images/Amazon_ECS-2.png)
 
 Scroll down and find the public or private IP of the hub.
 
 Using the IP of the hub, if we go to http://<HUB IP>:4444/grid/console we should see that our instances are connected:
 
-![Grid Console](../images/posts/Grid_Console.png)
+![Grid Console](/images/Grid_Console.png)
 
 Congragulations, you now have a scalable Selenium Grid!
 
