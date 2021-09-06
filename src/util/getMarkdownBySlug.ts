@@ -10,6 +10,7 @@ export interface MarkdownRaw {
 export interface PostMarkdown extends MarkdownRaw {
   title?: string
   date?: string
+  tags?: string[]
 }
 
 export const getMarkdownBySlug = async (
@@ -34,7 +35,9 @@ export const getMarkdownBySlug = async (
       items[field] = content
     }
 
-    if (data[field]) {
+    if (field === 'tags' && data[field]) {
+      items[field] = data[field].split('|')
+    } else if (data[field]) {
       items[field] = data[field]
     }
   })

@@ -7,6 +7,9 @@ import markdownToHtml from '~/util/markdownToHtml'
 import { getAllPosts } from '~/util/getAllPosts'
 import { getContentBySlug } from '~/util/getContentBySlug'
 import { PostMarkdown, MarkdownRaw } from '~/util/getMarkdownBySlug'
+import { formatDate } from '~/util/formatDate'
+import { Tag } from '~/components/atoms/Tag'
+import { PostList } from '~/components/molecules/PostList'
 
 const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
   posts,
@@ -20,13 +23,7 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
           Content={
             <div className='my-10'>
               <h2>Posts</h2>
-              {posts.map((post) => (
-                <h2 key={post.slug}>
-                  <Link href={`/posts/${post?.slug}`}>
-                    <a>{post.title}</a>
-                  </Link>
-                </h2>
-              ))}
+              <PostList posts={posts} />
             </div>
           }
         />
@@ -37,7 +34,7 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const [posts, aboutMe] = await Promise.all([
-    getAllPosts(['title', 'date', 'slug']),
+    getAllPosts(['title', 'tags', 'date', 'slug']),
     getContentBySlug('about-me', ['content']).then((md) =>
       markdownToHtml(md.content)
     )

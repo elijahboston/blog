@@ -5,10 +5,11 @@ import { PostTemplate } from '~/components/templates/PostTemplate'
 import markdownToHtml from '~/util/markdownToHtml'
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { getQueryParameter } from '~/util/getQueryParameter'
-import { Breadcrumbs } from '~/components/organisms/Breadcrumbs'
 import { getAllPosts } from '~/util/getAllPosts'
 import { PostMarkdown } from '~/util/getMarkdownBySlug'
 import { getPostBySlug } from '~/util/getPostBySlug'
+import { formatDate } from '~/util/formatDate'
+import { Tag } from '~/components/atoms/Tag'
 
 const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
   const router = useRouter()
@@ -20,9 +21,26 @@ const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
     <BaseTemplate
       Content={
         <PostTemplate
-          Title={post?.title}
-          Breadcrumbs={<Breadcrumbs />}
-          Content={post.content}
+          Hero={
+            <>
+              <h1 className='my-2'>{post.title}</h1>
+              {post.tags?.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+              ))}
+              {post.date && (
+                <h5 className='my-2'>
+                  Posted on{' '}
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                </h5>
+              )}
+            </>
+          }
+          Content={
+            <article
+              className='border-secondary border-t border-dotted pt-4'
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+          }
         />
       }
     />
@@ -33,6 +51,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = getQueryParameter(params.slug)
   const post = await getPostBySlug(slug, [
     'title',
+    'tags',
     'date',
     'slug',
     'author',

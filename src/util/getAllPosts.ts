@@ -15,6 +15,6 @@ export const getAllPosts = async (fields: string[]) => {
     slugs.map((slug) => getPostBySlug(slug, fields))
   ).then((
     results // sort posts by date in descending order
-  ) => results.sort((post1, post2) => (post1.date > post2.date ? -1 : 1)))
+  ) => results.sort((post1, post2) => (post1.date > post2.date ? 1 : -1)))
   return posts
 }
