@@ -29,12 +29,10 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const [posts, aboutMe] = await Promise.all([
-    getAllPosts(['title', 'tags', 'date', 'slug']),
-    getContentBySlug('about-me', ['content']).then((md) =>
-      markdownToHtml(md.content)
-    )
-  ])
+  const posts = getAllPosts(['title', 'tags', 'date', 'slug'])
+  const aboutMe = await markdownToHtml(
+    getContentBySlug('about-me', ['content']).content
+  )
 
   return {
     props: {
