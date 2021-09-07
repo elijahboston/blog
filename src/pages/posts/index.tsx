@@ -11,6 +11,9 @@ const Posts: NextPage<{ posts: PostMarkdown[]; aboutMe: MarkdownRaw }> = ({
 }) => {
   return (
     <BaseTemplate
+      meta={{
+        title: 'post index'
+      }}
       Content={
         <HomepageTemplate
           Content={

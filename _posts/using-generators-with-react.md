@@ -136,4 +136,4 @@ Each time we call the `next()` method we get the next iteration of the `for` loo
 
 Putting it all together:
 
-https://codesandbox.io/s/fetch-dogs-phgir
+[https://codesandbox.io/s/fetch-dogs-phgir](https://codesandbox.io/s/fetch-dogs-phgir)

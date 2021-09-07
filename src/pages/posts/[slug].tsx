@@ -10,6 +10,8 @@ import { PostMarkdown } from '~/util/getMarkdownBySlug'
 import { getPostBySlug } from '~/util/getPostBySlug'
 import { formatDate } from '~/util/formatDate'
 import { Tag } from '~/components/atoms/Tag'
+import { SITE_TITLE } from '~/constants'
+import Head from 'next/head'
 
 const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
   const router = useRouter()
@@ -18,32 +20,37 @@ const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
   }
 
   return (
-    <BaseTemplate
-      Content={
-        <PostTemplate
-          Hero={
-            <>
-              <h1 className='my-2'>{post.title}</h1>
-              {post.tags?.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-              {post.date && (
-                <h5 className='my-2'>
-                  Posted on{' '}
-                  <time dateTime={post.date}>{formatDate(post.date)}</time>
-                </h5>
-              )}
-            </>
-          }
-          Content={
-            <article
-              className='border-secondary border-t border-dotted pt-4'
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-          }
-        />
-      }
-    />
+    <>
+      <BaseTemplate
+        meta={{
+          title: post.title
+        }}
+        Content={
+          <PostTemplate
+            Hero={
+              <div className='border-secondary border-b border-dotted'>
+                <h1 className='my-2'>{post.title}</h1>
+                {post.tags?.map((tag) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+                {post.date && (
+                  <h5 className='my-2'>
+                    Posted on{' '}
+                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  </h5>
+                )}
+              </div>
+            }
+            Content={
+              <article
+                className='pt-4 mx-4'
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+            }
+          />
+        }
+      />
+    </>
   )
 }
 
