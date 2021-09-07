@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import ErrorPage from 'next/error'
+import { useRouter } from 'next/router'
+import { Tag } from '~/components/atoms/Tag'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { PostTemplate } from '~/components/templates/PostTemplate'
-import markdownToHtml from '~/util/markdownToHtml'
-import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import { getQueryParameter } from '~/util/getQueryParameter'
+import { formatDate } from '~/util/formatDate'
 import { getAllPosts } from '~/util/getAllPosts'
 import { PostMarkdown } from '~/util/getMarkdownBySlug'
 import { getPostBySlug } from '~/util/getPostBySlug'
-import { formatDate } from '~/util/formatDate'
-import { Tag } from '~/components/atoms/Tag'
+import { getQueryParameter } from '~/util/getQueryParameter'
+import markdownToHtml from '~/util/markdownToHtml'
 
 const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
   const router = useRouter()
@@ -55,7 +55,7 @@ const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = getQueryParameter(params.slug)
-  const post = await getPostBySlug(slug, [
+  const post = getPostBySlug(slug, [
     'title',
     'summary',
     'tags',
@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllPosts(['slug'])
+  const posts = getAllPosts(['slug'])
 
   return {
     paths: posts.map((post) => {
