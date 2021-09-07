@@ -19,7 +19,7 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
     <BaseTemplate
       Content={
         <HomepageTemplate
-          TopContent={<p dangerouslySetInnerHTML={{ __html: aboutMe }} />}
+          TopContent={<div dangerouslySetInnerHTML={{ __html: aboutMe }} />}
           Content={
             <div className='my-10'>
               <h2>Posts</h2>
