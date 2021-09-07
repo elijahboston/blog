@@ -2,15 +2,16 @@
 date: '2019-08-27'
 title: 'Async Functions with useEffect'
 tags: react | async
+description: In this post we'll explore how asynchronous functions can be used correctly within functional React components.
 ---
 
-useEffect replaces `componentDidMount` and `componentWillUpdate` to handle any sort of events that occur _after_ the component is mounted. At first I was confused a little by this, because the signature of useEffect is:
+In this post we'll explore how asynchronous functions can be used correctly within functional React components. The first thing we'll reach for is the `useEffect` hook since that's triggered after the component is initially rendered, or when certain properties change. The signature looks like this:
 
 ```javascript
 useEffect(() => { ... })
 ```
 
-So I wondered, how would we use async functions in there? My first instinct was to just make the inner function async:
+How would we use async functions here? It's tempting to just make the inner function asynchronous:
 
 ```javascript
 // INCORRECT
@@ -20,7 +21,7 @@ useEffect(async () => {
 })
 ```
 
-React will yell at you if you try this though. See, `useEffect` _must be a synchronous function_, but there's nothing stopping us from _creating an async function inside of it_.
+React will yell at you if you try this though. `useEffect` _must be a synchronous function_, but there's nothing stopping us from _creating an asynchronous function inside of it_.
 
 ```javascript
 // Almost there...
@@ -31,7 +32,7 @@ useEffect(() => {
 })
 ```
 
-Cool. I'm sure you see the problem though. How can we await the inner `loadData` function? Easy: we don't.
+The major difference between this use of `async` and what we're normally accustomed to is that we won't `await` the asynchronous function.
 
 ```javascript
 // CORRECT
@@ -40,12 +41,12 @@ useEffect(() => {
     await fetchData()
   }
 
-  // Look Mom! No await!
+  // Notice no await
   loadData()
 })
 ```
 
-By calling `loadData` but _not_ awaiting it, we allow the outer `useEffect` function to finish while `loadData` is still executing. The one final missing element, is that `loadData` needs to update the component state itself. We can do this by using the `useState` hook:
+By calling `loadData` but _not_ awaiting it, we allow the outer `useEffect` function to finish while `loadData` is still executing. The last piece is that if we're depending on the results from `loadData`, then `loadData` needs to update the component state when its complete. We can do this easily buy setting the state from within the asynchornous function within `useEffect`.
 
 ```javascript
 const [data, setData] = useState()

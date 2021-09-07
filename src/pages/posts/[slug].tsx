@@ -10,8 +10,6 @@ import { PostMarkdown } from '~/util/getMarkdownBySlug'
 import { getPostBySlug } from '~/util/getPostBySlug'
 import { formatDate } from '~/util/formatDate'
 import { Tag } from '~/components/atoms/Tag'
-import { SITE_TITLE } from '~/constants'
-import Head from 'next/head'
 
 const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
   const router = useRouter()
@@ -23,7 +21,8 @@ const Post: NextPage<{ post: PostMarkdown }> = ({ post }) => {
     <>
       <BaseTemplate
         meta={{
-          title: post.title
+          title: post.title,
+          description: post.summary
         }}
         Content={
           <PostTemplate
@@ -58,6 +57,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = getQueryParameter(params.slug)
   const post = await getPostBySlug(slug, [
     'title',
+    'summary',
     'tags',
     'date',
     'slug',

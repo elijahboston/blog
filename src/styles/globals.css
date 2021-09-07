@@ -34,10 +34,15 @@
     @apply text-md font-display text-textPrimary mb-8;
   }
   code {
+    @apply font-mono bg-white text-black;
+  }
+
+  code.hljs {
     @apply mb-8;
   }
 
-  article ul {
+  article ul,
+  article ol {
     @apply text-md list-disc text-textPrimary m-4 font-display;
   }
 }

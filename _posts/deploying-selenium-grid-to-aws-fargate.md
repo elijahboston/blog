@@ -2,6 +2,7 @@
 date: '2019-09-23'
 title: 'Deploying Selenium Grid on AWS Fargate'
 tags: aws | serverless | fargate | selenium
+description: Seleum Grid is great and it's a breeze to get it started up locally, where things get a bit heavier is when you actually want to deploy it for real instead of just on your local machine.
 ---
 
 Seleum Grid is great and it's a breeze to get it started up locally, where things get a bit heavier is when you actually want to deploy it for real instead of just on your local machine.

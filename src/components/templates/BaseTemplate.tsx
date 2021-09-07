@@ -5,6 +5,7 @@ import { PageHeader } from '../organisms/PageHeader'
 import Head from 'next/head'
 export interface MetaProps {
   title?: string
+  description?: string
 }
 
 export const BaseTemplate: React.FC<{
@@ -16,6 +17,9 @@ export const BaseTemplate: React.FC<{
       <title>
         {SITE_TITLE} {meta?.title && '/'} {meta?.title}
       </title>
+      {meta?.description && (
+        <meta name='description' content={meta.description} />
+      )}
     </Head>
     <div className='grid grid-cols-12'>
       <main className='col-span-10 col-start-2 md:col-span-8 md:col-start-3 lg:col-span-6 lg:col-start-4'>

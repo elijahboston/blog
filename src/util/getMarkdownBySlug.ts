@@ -9,6 +9,7 @@ export interface MarkdownRaw {
 
 export interface PostMarkdown extends MarkdownRaw {
   title?: string
+  summary?: string
   date?: string
   tags?: string[]
 }

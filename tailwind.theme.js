@@ -1,7 +1,8 @@
 module.exports.theme = {
   fontFamily: {
     display: 'Source Sans Pro, sans-serif',
-    body: 'Source Serif Pro, serif'
+    body: 'Source Serif Pro, serif',
+    mono: 'Source Code Pro, sans-serif'
   },
   fontSize: {
     xs: '.8rem',
