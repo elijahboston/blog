@@ -1,15 +1,11 @@
+import { GetStaticProps, NextPage } from 'next'
+import { PostList } from '~/components/molecules/PostList'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { HomepageTemplate } from '~/components/templates/HomepageTemplate'
-import { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
-
-import markdownToHtml from '~/util/markdownToHtml'
 import { getAllPosts } from '~/util/getAllPosts'
 import { getContentBySlug } from '~/util/getContentBySlug'
-import { PostMarkdown, MarkdownRaw } from '~/util/getMarkdownBySlug'
-import { formatDate } from '~/util/formatDate'
-import { Tag } from '~/components/atoms/Tag'
-import { PostList } from '~/components/molecules/PostList'
+import { PostMarkdown } from '~/util/getMarkdownBySlug'
+import markdownToHtml from '~/util/markdownToHtml'
 
 const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
   posts,

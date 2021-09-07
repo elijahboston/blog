@@ -1,10 +1,9 @@
+import Head from 'next/head'
 import { SITE_TITLE } from '~/constants'
+import { ForkMe } from '../atoms/ForkMe'
 import { Footer } from '../organisms/Footer'
 import { Nav } from '../organisms/Nav'
 import { PageHeader } from '../organisms/PageHeader'
-import Head from 'next/head'
-import Image from 'next/image'
-import { ForkMe } from '../atoms/ForkMe'
 export interface MetaProps {
   title?: string
   description?: string
