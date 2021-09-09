@@ -1,5 +1,6 @@
 import { GetStaticProps, NextPage } from 'next'
-import { PostList } from '~/components/molecules/PostList'
+import { HtmlFragment } from '~/components/atoms/HtmlFragment'
+import { PostList } from '~/components/organisms/PostList'
 import { BaseTemplate } from '~/components/templates/BaseTemplate'
 import { HomepageTemplate } from '~/components/templates/HomepageTemplate'
 import { getAllPosts } from '~/util/getAllPosts'
@@ -15,13 +16,8 @@ const Home: NextPage<{ posts: PostMarkdown[]; aboutMe: string }> = ({
     <BaseTemplate
       Content={
         <HomepageTemplate
-          TopContent={<div dangerouslySetInnerHTML={{ __html: aboutMe }} />}
-          Content={
-            <div className='my-10'>
-              <h2>Posts</h2>
-              <PostList posts={posts} />
-            </div>
-          }
+          TopContent={<HtmlFragment html={aboutMe} />}
+          Content={<PostList posts={posts} />}
         />
       }
     />

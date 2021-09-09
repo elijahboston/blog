@@ -1,19 +1,14 @@
-# Atoms
+# Blog
 
-_Basic building blocks of matter, such as a button, input or a form label. They’re not useful on their own._
+This is the frontend for my blog hosted at [elijahboston.com](http://www.elijahboston.com)
 
-# Molecules
+Built with ❤️ using [NextJS](http://nextjs.org) + [TailwindCSS](https://tailwindcss.com/)
 
-_Grouping atoms together, such as combining a button, input and form label to build functionality._
+# Installation
 
-# Organisms
-
-_Combining molecules together to form organisms that make up a distinct section of an interface (i.e. navigation bar)_
-
-At this point we can begin mapping data from our GraphQL page response directly to components that rely on it.
-
-# Templates
-
-_... Templates create relationships between the organisms and other components through positions, placements, and patterns of the pages but it doesn’t have any style, color, or component rendered._
-
-We diverge from Atomic Design slightly by using Components instead of raw CSS, but the principle is the same.
+```
+git clone git@github.com:elijahboston/blog.git
+cd blog
+yarn
+yarn dev
+```
