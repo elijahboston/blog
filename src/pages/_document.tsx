@@ -7,7 +7,7 @@ class DocumentOverride extends Document {
         <Head>
           <link rel='preconnect' href='https://fonts.gstatic.com' />
           <link
-            href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Source+Sans+Pro:wght@300&display=swap'
+            href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Source+Sans+Pro:wght@300&family=Source+Code+Pro&display=swap'
             rel='stylesheet'
           />
         </Head>

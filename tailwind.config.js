@@ -14,6 +14,6 @@ module.exports = {
     borderColor: ['group-hover'],
     textColor: ['group-hover']
   },
-  plugins: [require('./tailwind-custom-plugins/base')],
+  plugins: [],
   theme
 }

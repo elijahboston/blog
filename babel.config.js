@@ -1,5 +1,6 @@
 module.exports = (api) => {
   const isTest = api.env('test')
+  api.cache(true)
 
   return {
     presets: [
@@ -17,8 +18,7 @@ module.exports = (api) => {
             '~': './src'
           }
         }
-      ],
-      'babel-plugin-macros'
+      ]
     ]
   }
 }

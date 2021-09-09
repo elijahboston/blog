@@ -1,5 +1,52 @@
 /* purgecss start ignore */
+@import 'highlight.js/styles/github.css';
+
 @tailwind base;
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  small {
+    @apply font-display text-textPrimary;
+  }
+  h1 {
+    @apply text-xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+
+  a {
+    @apply border-b border-transparent text-secondary no-underline;
+  }
+
+  a:hover {
+    @apply border-b border-secondary;
+  }
+
+  p {
+    @apply text-md font-display text-textPrimary mb-8;
+  }
+  code {
+    @apply font-mono bg-white text-black;
+  }
+
+  code.hljs {
+    @apply mb-8;
+  }
+
+  article ul,
+  article ol {
+    @apply text-md list-disc text-textPrimary m-4 font-display;
+  }
+}
+
 @tailwind components;
 
 /* Prevent zoom on iOS devices */

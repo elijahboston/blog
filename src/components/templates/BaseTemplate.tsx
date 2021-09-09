@@ -1,27 +1,43 @@
+import Head from 'next/head'
+import { SITE_TITLE } from '~/constants'
+import { ForkMe } from '../atoms/ForkMe'
+import { Footer } from '../organisms/Footer'
+import { Nav } from '../organisms/Nav'
+import { PageHeader } from '../organisms/PageHeader'
+export interface MetaProps {
+  title?: string
+  description?: string
+}
+
 export const BaseTemplate: React.FC<{
-  StickyNav?: React.ReactNode
-  Nav?: React.ReactNode
-  Header?: React.ReactNode
   Content: React.ReactNode
-  Footer: React.ReactNode
-}> = ({ StickyNav, Nav, Header, Content, Footer }) => (
+  meta?: MetaProps
+}> = ({ Content, meta }) => (
   <>
-    {StickyNav && (
-      <nav className='sticky top-0 z-50'>
-        <div className='grid grid-cols-12'>
-          <div className='col-span-12 md:col-span-8 md:col-start-3 lg:col-span-8 lg:col-start-3'>
-            {StickyNav}
-          </div>
-        </div>
-      </nav>
-    )}
-    <div className='BaseTemplate grid grid-cols-12'>
-      <div className='col-span-10 col-start-2 md:col-span-8 md:col-start-3 lg:col-span-4 lg:col-start-5'>
-        {Header && <div className='header'>{Header}</div>}
-        {Nav && <div className='nav'>{Nav}</div>}
-        <div className='content pb-40'>{Content}</div>
-      </div>
-      <div className='footer col-span-12'>{Footer}</div>
+    <Head>
+      <title>
+        {SITE_TITLE} {meta?.title && '/'} {meta?.title}
+      </title>
+      {meta?.description && (
+        <meta name='description' content={meta.description} />
+      )}
+    </Head>
+
+    <ForkMe />
+
+    <div className='grid grid-cols-12'>
+      <main className='col-span-10 col-start-2 md:col-span-8 md:col-start-3 lg:col-span-6 lg:col-start-4'>
+        <header className='mt-10 flex align-middle justify-center'>
+          <PageHeader />
+        </header>
+        <nav className='mt-10'>
+          <Nav />
+        </nav>
+        <section className='content pb-40 my-5'>{Content}</section>
+      </main>
+      <footer className='footer col-span-12'>
+        <Footer />
+      </footer>
     </div>
   </>
 )
