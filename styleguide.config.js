@@ -48,8 +48,7 @@ module.exports = {
   require: [
     path.join(__dirname, 'src/styles/globals.css'),
     path.join(__dirname, 'src/styles/tailwind.css'),
-    path.join(__dirname, 'src/styles/fonts.css'),
-    path.join(__dirname, 'src/styles/cube.css')
+    path.join(__dirname, 'src/styles/fonts.css')
   ],
   theme: {
     color: {

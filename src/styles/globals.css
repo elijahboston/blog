@@ -1,8 +1,6 @@
 /* purgecss start ignore */
 @import 'highlight.js/styles/github.css';
-
 @tailwind base;
-
 @layer base {
   h1,
   h2,
@@ -33,12 +31,9 @@
   p {
     @apply text-md font-display text-textPrimary mb-8;
   }
+
   code {
     @apply font-mono bg-white text-black;
-  }
-
-  code.hljs {
-    @apply mb-8;
   }
 
   article ul,
@@ -57,6 +52,10 @@
   input[type='text'] {
     font-size: 16px;
   }
+}
+
+pre code.hljs {
+  @apply mb-8;
 }
 
 /* purgecss end ignore */
